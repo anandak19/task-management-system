@@ -1,0 +1,175 @@
+<div class="sign-up-form-container">
+  <div class="sign-up-form-container__image-section">
+    <img src="../../../assets/images/signup-img.jpg" alt="" />
+  </div>
+
+  <div class="sign-up-form-container__form-section">
+    <form [formGroup]="form" (ngSubmit)="signup()">
+      <h1 class="sign-up-form-container__title">Sign Up</h1>
+
+      <div class="sign-up-form-container__grid">
+      <div class="sign-up-form-container__form-group">
+        <input
+          type="text"
+          class="sign-up-form-container__form-control"
+          formControlName="firstName"
+          placeholder=" "
+          [ngClass]="{'sign-up-form-container__is-invalid': isSubmitted && form.get('firstName')?.hasError('required')}"
+        />
+        <label for="" class="sign-up-form-container__label">First Name</label>
+        @if (isSubmitted && form.get('firstName')?.invalid) {
+          <div class="sign-up-form-container__invalid-feedback">
+            <div>First name is required.</div>
+          </div>
+        }@else if (form.get('firstName')?.hasError('required')){
+          <div class="sign-up-form-container__input-warning">
+            <div>* Required</div>
+          </div>
+        }
+
+      </div>
+      <div class="sign-up-form-container__form-group">
+        <input
+          type="text"
+          class="sign-up-form-container__form-control"
+          formControlName="lastName"
+          placeholder=" "
+          [ngClass]="{'sign-up-form-container__is-invalid': isSubmitted && form.get('lastName')?.hasError('required')}"
+        />
+        <label for="" class="sign-up-form-container__label">Last Name</label>
+        @if (isSubmitted && form.get('lastName')?.invalid) {
+          <div class="sign-up-form-container__invalid-feedback">
+            <div>Last name is required.</div>
+          </div>
+        }@else if(form.get('lastName')?.hasError('required')){
+          <div class="sign-up-form-container__input-warning">
+            <div>* Required</div>
+          </div>
+        }
+      </div>
+
+      <div class="sign-up-form-container__form-group">
+        <input
+          type="text"
+          class="sign-up-form-container__form-control"
+          formControlName="userName"
+          placeholder=" "
+          [ngClass]="{'sign-up-form-container__is-invalid': isSubmitted && form.get('userName')?.invalid}"
+        />
+        <label for="" class="sign-up-form-container__label">User Name</label>
+        @if (isSubmitted && form.get('userName')?.hasError('required')) {
+          <div class="sign-up-form-container__invalid-feedback">
+            <div>User name is required.</div>
+          </div>
+        }@else if(isSubmitted && form.get('userName')?.hasError('minlength')){
+          <div class="sign-up-form-container__invalid-feedback">
+            <div>Minimum 5 Charecters required</div>
+          </div>
+        }@else if(form.get('userName')?.hasError('required')){
+          <div class="sign-up-form-container__input-warning">
+            <div>* Required</div>
+          </div>
+        }
+      </div>
+      <div class="sign-up-form-container__form-group">
+        <input
+          type="email"
+          class="sign-up-form-container__form-control"
+          formControlName="email"
+          placeholder=" "
+          [ngClass]="{'sign-up-form-container__is-invalid': isSubmitted && form.get('email')?.invalid}"
+        />
+        <label for="" class="sign-up-form-container__label">Email</label>
+        @if (isSubmitted && form.get('email')?.hasError('required')) {
+          <div class="sign-up-form-container__invalid-feedback">
+            <div>Email is required.</div>
+          </div>
+        }@else if(isSubmitted && form.get('email')?.hasError('invalidEmail')){
+          <div class="sign-up-form-container__invalid-feedback">
+            <div>Invalid email format</div>
+          </div>
+        }@else if(form.get('email')?.hasError('required')){
+          <div class="sign-up-form-container__input-warning">
+            <div>* Required</div>
+          </div>
+        }
+      </div>
+
+
+      <div class="sign-up-form-container__form-group">
+        <input
+          type="password"
+          class="sign-up-form-container__form-control"
+          formControlName="password"
+          placeholder=" "
+          [ngClass]="{'sign-up-form-container__is-invalid': isSubmitted && form.get('password')?.invalid}"
+        />
+        <label for="" class="sign-up-form-container__label">Password</label>
+        @if (isSubmitted && form.get('password')?.hasError('required')) {
+          <div class="sign-up-form-container__invalid-feedback">
+            <div>password is required.</div>
+          </div>
+        }@else if(isSubmitted && form.get('password')?.hasError('tooShort')){
+          <div class="sign-up-form-container__invalid-feedback">
+            <div>Minimum 5 Charecters required</div>
+          </div>
+        }@else if(isSubmitted && form.get('password')?.hasError('noUppercase')){
+          <div class="sign-up-form-container__invalid-feedback">
+            <div>Minimum one uppercase charecter required</div>
+          </div>
+        }@else if(isSubmitted && form.get('password')?.hasError('noLowercase')){
+          <div class="sign-up-form-container__invalid-feedback">
+            <div>Minimum one lowercase charecter required</div>
+          </div>
+        }@else if(isSubmitted && form.get('password')?.hasError('noSpecialChar')){
+          <div class="sign-up-form-container__invalid-feedback">
+            <div>Minimum one special charecter required</div>
+          </div>
+        }@else if(isSubmitted && form.get('password')?.hasError('noNumber')){
+          <div class="sign-up-form-container__invalid-feedback">
+            <div>Minimum one number is required</div>
+          </div>
+        }@else if(form.get('password')?.hasError('required')){
+          <div class="sign-up-form-container__input-warning">
+            <div>* Required</div>
+          </div>
+        }
+      </div>
+
+      
+      <div class="sign-up-form-container__form-group">
+        <input
+          type="password"
+          class="sign-up-form-container__form-control"
+          formControlName="confirmPassword"
+          placeholder=" "
+          [ngClass]="{'sign-up-form-container__is-invalid': isSubmitted && form.get('confirmPassword')?.invalid}"
+        />
+        <label for="" class="sign-up-form-container__label"
+          >Confirm Password</label
+        >
+        @if (isSubmitted && form.get('confirmPassword')?.hasError('required')) {
+          <div class="sign-up-form-container__invalid-feedback">
+            <div>password is required.</div>
+          </div>
+        }@else if(isSubmitted && form.get('confirmPassword')?.hasError('misMatch')){
+          <div class="sign-up-form-container__invalid-feedback">
+            <div>password miss match</div>
+          </div>
+        }@else if(form.get('confirmPassword')?.hasError('required')){
+          <div class="sign-up-form-container__input-warning">
+            <div>* Required</div>
+          </div>
+        }
+      </div>
+    </div>
+      <button type="submit" class="sign-up-form-container__signup-btn" >
+        Sign Up
+      </button>
+    </form>
+    <p class="sign-up-form-container__is-user">
+      Already have an account ?
+      <a routerLink="login" class="sign-up-form-container__login-text">Login</a>
+    </p>
+  </div>
+</div>

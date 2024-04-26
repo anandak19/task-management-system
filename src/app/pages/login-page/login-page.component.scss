@@ -1,0 +1,103 @@
+.login-form-container {
+    display: flex;
+    width: 100%;
+    height: calc(100dvh - 70px);
+  
+    &__image-section {
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      padding: 18px;
+      & img {
+        width: 80%;
+      }
+    }
+  
+    &__form-section {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      & form {
+        width: 100%;
+        text-align: center;
+      }
+    }
+    &__form-group {
+      position: relative;
+    }
+  
+    &__label{
+      position: absolute;
+      font-size: 15px;
+      top: 0.8rem;
+      left: 12rem;
+      color: #343434;
+      pointer-events: none;
+      background-color: #fff;
+      padding: 0 3px;
+      transition: all ease-in 0.2s;
+    }
+    &__title {
+      font-size: 38px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+  
+    &__form-control {
+      border: 2px solid #bbfff3;
+      outline: none;
+      width: 50%;
+      height: 28px;
+      font-size: 14px;
+      padding: 8px 18px;
+      margin-bottom: 24px;
+      border-radius: 15px;
+      &:focus {
+        border: 2px solid #66fde1;
+      }
+    }
+    .login-form-container__form-control:focus ~ .login-form-container__label,
+    .login-form-container__form-control:not(:placeholder-shown).login-form-container__form-control:not(:focus)
+      ~ .login-form-container__label {
+      top: -0.7rem;
+      left: 11.6rem;
+      font-size: 13px;
+      color: #000000;
+    }
+  
+  
+    &__login-btn {
+      font-size: 18px;
+      border-radius: 30px;
+      padding: 8px 18px;
+      width: 30%;
+      color: #fff;
+      background-color: #16c5fc;
+  
+      &:hover {
+          background-color: #0da5d9;
+        }
+      
+        &:active {
+          background-color: #0b8bbd;
+        }
+    }
+    &__is-user {
+      margin: 12px 0;
+      font-weight: 200;
+    }
+    &__signup-text {
+      color: #16c5fc;
+      font-weight: 300;
+      cursor: pointer;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  

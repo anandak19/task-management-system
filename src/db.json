@@ -1,0 +1,32 @@
+{
+  "user": [
+    {
+      "id": "3dc5",
+      "firstName": "Ananda",
+      "lastName": "Krishnan H",
+      "userName": "anankk",
+      "email": "aaaa",
+      "password": "aa",
+      "confirmPassword": "qa"
+    },
+    {
+      "id": "92b5",
+      "firstName": "Anandakrishnan",
+      "lastName": "H",
+      "userName": "anandan",
+      "email": "anan@gmail.com",
+      "password": "Abcd123?",
+      "confirmPassword": "Abcd123?"
+    },
+    {
+      "id": "55e4",
+      "userName": "anandan",
+      "email": "anan@gmail.com"
+    },
+    {
+      "id": "10f2",
+      "userName": "anandan",
+      "email": "anan@gmail.com"
+    }
+  ]
+}
