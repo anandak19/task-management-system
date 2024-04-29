@@ -1,0 +1,95 @@
+<div class="create-task">
+  <div class="create-task__form-container">
+    <form [formGroup]="newTask" (ngSubmit)="addTask()">
+      <h1 class="create-task__title" >Create New Task</h1>
+
+      <div class="create-task__form-group">
+        <input
+          type="text"
+          class="create-task__form-control"
+          [ngClass]="{'create-task__is-invalid': isTaskSubmited && newTask.get('taskTitle')?.invalid}"
+          formControlName="taskTitle"
+          placeholder=" "
+          />
+        <label for="" class="create-task__label">Task Title</label>
+        @if (isTaskSubmited && newTask.get('taskTitle')?.invalid) {
+          <div class="create-task__invalid-feedback">
+            <div>Title is required.</div>
+          </div>
+        }
+      </div>
+
+      <div class="create-task__form-group">
+        <textarea
+          class="create-task__form-control"
+          [ngClass]="{'create-task__is-invalid': isTaskSubmited && newTask.get('taskDiscription')?.invalid}"
+          formControlName="taskDiscription"
+          placeholder=""
+          style="height: 100px; resize: none"
+        ></textarea>
+        <label for="" class="create-task__label">Task Discription</label>
+        @if (isTaskSubmited && newTask.get('taskDiscription')?.invalid) {
+          <div class="create-task__invalid-feedback">
+            <div>Discription is required.</div>
+          </div>
+        }
+      </div>
+
+      <div class="create-task__form-group">
+        <input
+          type="date"
+          class="create-task__form-control"
+          [ngClass]="{'create-task__is-invalid': isTaskSubmited && newTask.get('dueDate')?.invalid}"
+          formControlName="dueDate"
+        />
+        <label for="dueDate" class="create-task__label">Due Date</label>
+        @if (isTaskSubmited && newTask.get('dueDate')?.invalid) {
+          <div class="create-task__invalid-feedback">
+            <div>Add a due date</div>
+          </div>
+        }
+      </div>
+
+      <div class="create-task__dropdown-section">
+        <div class="create-task__form-group-dropdown">
+          <label for="">Priority:</label>
+          <select
+            class="create-task__form-control-dropdown"
+            [ngClass]="{'create-task__is-invalid': isTaskSubmited && newTask.get('priority')?.invalid}"
+            formControlName="priority"
+          >
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+          @if (isTaskSubmited && newTask.get('priority')?.invalid) {
+            <div class="create-task__invalid-feedback">
+              <div>Select priority</div>
+            </div>
+          }
+        </div>
+        <div class="create-task__form-group-dropdown">
+          <label for="">Status:</label>
+          <select
+            class="create-task__form-control-dropdown"
+            [ngClass]="{'create-task__is-invalid': isTaskSubmited && newTask.get('priority')?.invalid}"
+            formControlName="taskStatus"
+          >
+            <option value="pending">Pending</option>
+            <option value="completed">Completed</option>
+            <option value="overdue">Overdue</option>
+          </select>
+          @if (isTaskSubmited && newTask.get('taskStatus')?.invalid) {
+            <div class="create-task__invalid-feedback">
+              <div>Select a status</div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <button type="submit" class="create-task__add-task-btn">
+        Add Task
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,14 +1,197 @@
 .dashboard {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%; 
+    height: calc(100dvh - 70px);
     
-    h1 {
-      font-size: 24px;
-      margin-bottom: 20px;
+  
+    &__header{
+      display: flex;
+      flex-direction: column;
+      background-color: rgb(255, 241, 241);
+      padding: 12px 24px;
+    }
+    &__greetings{
+      font-size: 22px;
+      font-weight: 200;
+    }
+    &__page-title{
+      display: flex;
+      justify-content: center;
+    }
+    &__page-title-text{
+      border-left: 3px dotted black;
+      border-right: 3px dotted black;
+      padding: 8px 18px;
+      border-radius: 30px;
+      width: fit-content;
+    }
+
+    &__body{
+      background-color: rgb(198, 198, 198);
+      display: flex;
+      width: 100%;
+    }
+
+    // body sections 
+    &__task-tiles-section{
+      background-color: rgb(202, 202, 202);
+      flex-grow: 6;
+      // padding: 14px 14px;
+    }
+    &__pie-chart-section{
+      background-color: blueviolet;
+      flex-grow: 4;
+      padding: 14px 0;
+    }
+
+
+
+
+
+    &__task-tiles-container{
+      margin: 14px auto;
+      width: 90%;
+      padding: 14px;
+      background-color: aliceblue;
+    }
+    &__pie-chart-container{
+      margin: 0 auto;
+      width: 85%;
+      background-color: aliceblue;
+    }
+
+    &__task-tiles-head{
+      display: flex;
+      justify-content: space-between;
+      // padding: 0 14px;
+    }
+    &__section-title{
+      font-size: 34px;
+      font-weight: 600;
+      color: #323232;
+    }
+    &__task-create-btn{
+      padding: 8px 14px;
+      font-size: 14px;
+      font-weight: 600;
+      box-sizing: border-box;
+      background-color: #3c00ff;
+      color: #f1f1f1;
+      border-radius: 10px;
+
+    }
+
+
+
+    // filter section 
+    &__task-tiles-filter-section{
+      // background-color: rgb(207, 215, 222);
+      padding: 8px 14px;
+    }
+    &__task-tiles-dropdown{
+      width: fit-content;
+    }
+    //dropdown start -------
+    &__task-tiles-dropbtn{
+      background-color: #3c00ff;
+      color: white;
+      padding: 8px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
+    &__task-tiles-dropdown-content{
+      display: none;
+      position: absolute;
+      background-color: #a28ced;
+      min-width: 160px;
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+    &__task-tiles-dropdown:hover &__task-tiles-dropdown-content{
+      display: block;
+    }
+    &__task-tiles-dropdown-content{
+      & a{
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+      & a:hover{
+        background-color: #f1f1f1;
+      }
+    }
+     //dropdown end -------
+
+    // task tiles tiles show section ---------------------------
+    &__task-tiles-tiles-wrapper{
+      background-color: rgb(230, 230, 230);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      // margin: 8px 0;
+      // width: 100%;
+    }
+    &__task-tiles-task{
+      background-color: #C5FB6C;
+      padding: 8px 28px;
+      display: flex;
+      box-sizing: border-box;
+      justify-content: space-between;
+      margin-top: 12px;
+    }
+    &__task-tiles-task-completed{
+      background-color: #0dc600;
+    }
+    &__task-tile-details{
+      padding: 8px 14px;
+      margin: 4px 0;
+      box-sizing: border-box;
+      background-color: #008ab4;
+      color: #f1f1f1;
+      border-radius: 18px;
+      transition: all 0.3s ease;
+      &:active{
+        transform: scale(0.95);
+      }
+    }
+    &__task-tiles-controls{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    &__task-tiles-completed{
+      background-color: #00b300;
+      color: #f1f1f1;
+      &:hover{
+        background-color: #009c00;
+      }
+
+    }
+    &__task-tiles-delete{
+      background-color: #CF0000;
+      color: #ffffff;
+      &:hover{
+        background-color: #b60101;
+      }
+    }
+    &__task-tiles-completed, &__task-tiles-delete{
+      color: #ffffff;
+      padding: 2px;
+      border-radius: 10px;
+      height: 40px;
+      width: 100px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      &:active{
+        transform: scale(0.95);
+      }
     }
     
+
   }
   
+
+
+

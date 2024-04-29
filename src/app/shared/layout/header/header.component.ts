@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SignupPageComponent } from '../../../pages/signup-page/signup-page.component';
 import { RouterOutlet } from '@angular/router';
+import { CreateTaskPageComponent } from '../../../pages/create-task-page/create-task-page.component';
 
 @Component({
   selector: 'app-header',

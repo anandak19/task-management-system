@@ -1,0 +1,115 @@
+.create-task {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 14px auto;
+
+  &__form-container {
+    background-color: #dddddd;
+    width: 60%;
+    & form {
+      margin: 28px;
+      display: grid;
+      align-items: center;
+      // grid-template-columns: 400px 400px;
+      // flex-direction: column;
+      justify-content: center;
+      gap: 18px;
+    }
+  }
+  &__title {
+    text-align: center;
+    margin: 8px 0;
+  }
+  &__form-group {
+    position: relative;
+  }
+  &__label {
+    position: absolute;
+    font-size: 18px;
+    top: 0.8rem;
+    left: 1rem;
+    color: #343434;
+    pointer-events: none;
+    // background-color: #dddddd;
+    padding: 0 3px;
+    transition: all ease-in 0.2s;
+  }
+  &__form-control {
+      border: 2px solid #00b493;
+      // background-color: #dddddd;
+      outline: none;
+      width: 500px;
+      height: 28px;
+    font-size: 14px;
+    padding: 8px 18px;
+    border-radius: 15px;
+    &:focus {
+        border: 2px solid #006a57;
+    }
+  }
+  .create-task__form-control:focus ~ .create-task__label,
+  .create-task__form-control:not(
+      :placeholder-shown
+    ).create-task__form-control:not(:focus)
+    ~ .create-task__label {
+    top: -0.7rem;
+    left: 1rem;
+    font-size: 14px;
+    background-color: #4cffde;
+    // border-radius: 20px;
+    padding: 0 8px;
+    color: #000000;
+  }
+
+  &__form-group-dropdown{
+    // width: 100px;
+    
+    & label{
+        padding-right: 18px;
+        font-size: 18px;
+    }
+  }
+  &__form-control-dropdown{
+    width: 100px;
+    height: 30px;
+    outline: none;
+    // background-color: #00b493;
+    border: 2px solid #00b493;
+    & :focus{
+        border: 2px solid #006a57;
+    }
+  }
+  &__dropdown-section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__add-task-btn{
+    padding: 8px 18px;
+    font-size: 18px;
+    background-color: blue;
+    color: #fff;
+    margin: 14px 0;
+    &:hover{
+        background-color: rgb(70, 70, 255);
+    }
+  }
+
+  &__invalid-feedback{
+    color: red;
+    font-size: 14px;
+    padding-left: 28px;
+  }
+  &__input-warning{
+    color: #767676;
+    font-size: 12px;
+    font-weight: 300;
+    text-align: start;
+    padding-left: 28px;
+  }
+  &__is-invalid{
+    border: 1px solid #c91515;
+  }
+}

@@ -1,5 +1,75 @@
 <div class="dashboard">
-    <h1>Welcome to the Dashboard! {{ currentUser.userName }}</h1>
-    <button (click)="logout()">logout</button>
+  <div class="dashboard__header">
+    <div class="dashboard__page-title">
+      <p class="dashboard__page-title-text">Dashboard</p>
+    </div>
+    <p class="dashboard__greetings">
+      Hi Anandakrishnan{{ currentUser.userName }}
+    </p>
   </div>
-  
+
+  <!-- body section  -->
+  <div class="dashboard__body">
+    <div class="dashboard__task-tiles-section">
+      <div class="dashboard__task-tiles-container">
+        <div class="dashboard__task-tiles-head">
+          <h1 class="dashboard__section-title">Your Tasks</h1>
+          <!-- add link to go to task creation page  -->
+          <button class="dashboard__task-create-btn" routerLink="create-task">
+            Create Task
+          </button>
+        </div>
+        <div class="dashboard__task-tiles-filter-section">
+          <div class="dashboard__task-tiles-dropdown">
+            <button class="dashboard__task-tiles-dropbtn">Filter Tasks</button>
+            <div class="dashboard__task-tiles-dropdown-content">
+              <a (click)="selectItem('alltasks')">All Tasks</a>
+              <a (click)="selectItem('pending')">Pending Tasks</a>
+              <a (click)="selectItem('overdue')">Overdue Tasks</a>
+              <a (click)="selectItem('completed')">Completed Tasks</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- list of tasks  -->
+        <div class="dashboard__task-tiles-tiles-wrapper">
+          @for(task of taskList; track task.id){
+          <div
+            class="dashboard__task-tiles-task"
+            [ngClass]="{ 'dashboard__task-tiles-task-completed': task.taskStatus === 'completed'}"
+            >
+            <div class="">
+              <h3>{{ task.taskTitle }}</h3>
+              <p>Due: {{ task.dueDate }}</p>
+              <!-- add link to go to details page  -->
+              <button class="dashboard__task-tile-details">View Details</button>
+            </div>
+            <div class="dashboard__task-tiles-controls">
+              <button
+                class="dashboard__task-tiles-completed"
+                (click)="completedTaskClicked(task.id)"
+              >
+              {{ task.taskStatus === 'completed' ? 'Completed' : 'Complete' }}
+              </button>
+              <button
+                class="dashboard__task-tiles-delete"
+                (click)="deleteTaskClicked(task.id)"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+          }@empty {
+          <p style="font-style: italic; color: #636363">Nothing to show</p>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="dashboard__pie-chart-section">
+      <div class="dashboard__pie-chart-container">
+        <h1 class="dashboard__section-title">Your Activity</h1>
+      </div>
+    </div>
+  </div>
+</div>
