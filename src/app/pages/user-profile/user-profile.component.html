@@ -1,0 +1,46 @@
+<div class="user-profile">
+  <div class="user-profile__header">
+    <p class="user-profile__page-title">Profile</p>
+  </div>
+  <div class="user-profile__body">
+    <div class="user-profile__user-image" (click)="fileInput.click()">
+        <img #userImage [src]="profileImage" />
+        <img src="../../../assets/images/user.jpg" alt="">
+        <input #fileInput type="file" accept="image/*" (change)="onFileSelected($event)" style="display: none;" />
+    </div>
+      
+      
+
+    <!-- grid box  -->
+    <div class="user-profile__user-details">
+      <div class="user-profile__user-username-row">
+        <div class="user-profile__username-box">
+          <p>Username: kksdfksd</p>
+        </div>
+      </div>
+
+      <!-- <div class="user-profile__user-data-row"> -->
+      <div class="user-profile__firstname-box">
+        <p>First Name: Anandan</p>
+      </div>
+      <div class="user-profile__lastname-box">
+        <p>Last Name: Krishan</p>
+      </div>
+      <!-- </div> -->
+
+      <!-- <div class="user-profile__user-data-row"> -->
+      <div class="user-profile__password-box">
+        <p>Password: itspasword</p>
+      </div>
+      <div class="user-profile__email-box">
+        <p>Email: abc.gmailcom</p>
+      </div>
+      <!-- </div> -->
+    </div>
+
+    <div class="user-profile__user-actions">
+      <button class="user-profile__edit-btn">Edit</button>
+      <button class="user-profile__logout-btn">Logout</button>
+    </div>
+  </div>
+</div>

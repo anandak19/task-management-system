@@ -42,7 +42,7 @@
               <h3>{{ task.taskTitle }}</h3>
               <p>Due: {{ task.dueDate }}</p>
               <!-- add link to go to details page  -->
-              <button class="dashboard__task-tile-details">View Details</button>
+              <button class="dashboard__task-tile-details" [routerLink]="'task/' + task.id">View Details</button>
             </div>
             <div class="dashboard__task-tiles-controls">
               <button

@@ -2,11 +2,16 @@ import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CreateTaskPageComponent } from './pages/create-task-page/create-task-page.component';
+import path from 'path';
 
 export const routes: Routes = [
   {
-    // path: '',
-    path: 'nil',
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
+    path: 'login',
     loadComponent: () =>
       import('./pages/login-page/login-page.component').then(
         (c) => c.LoginPageComponent
@@ -19,11 +24,23 @@ export const routes: Routes = [
         (c) => c.SignupPageComponent
       ),
   },
+  {
+    path: 'profile',
+    canActivateChild: [authGuard],
+    children: [
+      {
+        path: '',
+        loadComponent: () =>
+          import('./pages/user-profile/user-profile.component').then(
+            (c) => c.UserProfileComponent
+          ),
+      },
+    ],
+  },
 
   {
-    // path: 'dashboard',
-    path: '',
-    // canActivateChild: [authGuard],
+    path: 'dashboard',
+    canActivateChild: [authGuard],
     children: [
       {
         path: '',
@@ -34,19 +51,19 @@ export const routes: Routes = [
       },
       {
         path: 'create-task',
-        // path: '',
         loadComponent: () =>
           import('./pages/create-task-page/create-task-page.component').then(
             (c) => c.CreateTaskPageComponent
           ),
       },
+
+      {
+        path: 'task/:id',
+        loadComponent: () =>
+          import('./pages/task-details-page/task-details-page.component').then(
+            (c) => c.TaskDetailsPageComponent
+          ),
+      },
     ],
   },
-  // {
-  //   path: '',
-  //   loadComponent: () =>
-  //     import('./pages/create-task-page/create-task-page.component').then(
-  //       (c) => c.CreateTaskPageComponent
-  //     ),
-  // },
 ];

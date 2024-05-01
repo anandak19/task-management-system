@@ -33,7 +33,7 @@ export class CreateTaskPageComponent {
 
     this.newTask = this._fb.group({
       taskTitle: ['', [Validators.required, Validators.maxLength(60)]],
-      taskDiscription: ['', [Validators.required]],
+      taskDescription: ['', [Validators.required]],
       dueDate: [
         initialValue,
         [Validators.required, this.dateChangedValidator(initialValue)],
@@ -56,7 +56,9 @@ export class CreateTaskPageComponent {
     if (this.newTask.valid) {
       this._taskService.addnewTask(this.newTask.value).subscribe(
         (response) => {
-          this._route.navigateByUrl('');
+          // this._route.navigateByUrl('');
+          // correct path 
+          this._route.navigateByUrl('dashboard');
           // add a sucessfull add task toaster message here ------------
           console.log(response);
         },

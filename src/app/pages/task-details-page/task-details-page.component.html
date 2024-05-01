@@ -1,0 +1,89 @@
+<div class="task-details">
+  <div class="task-details__header">
+    <p class="task-details__page-title">Task Details</p>
+  </div>
+  <div class="task-details__body">
+    <button class="task-details__back-btn" (click)="goBackClicked()">
+      Go Back
+    </button>
+
+    <div class="task-details__details">
+        <div class="task-details__title-discription">
+          <!-- Task title  -->
+        <input
+          class="task-details__title"
+          [ngModel]="selectedTask?.taskTitle"
+          name="taskTitle"
+          [readonly]="!isUpdating"
+          (ngModelChange)="onTaskTitleChange($event)"
+          [ngClass]="{'edit-outline': isUpdating}"
+          autofocus
+        />
+        <!-- Task description  -->
+        <textarea
+          class="task-details__description"
+          [ngModel]="selectedTask?.taskDescription"
+          name="taskDescription"
+          rows="1"
+          [readonly]="!isUpdating"
+          (ngModelChange)="onDescriptionChange($event)"
+          [ngClass]="{'edit-outline': isUpdating}"
+        ></textarea>
+      </div>
+
+      <div class="task-details__extra-details">
+        <!-- Due date  -->
+        <div class="task-details__duedate-section">
+            <label for="">Due Date:</label>
+            <input
+            class="task-details__extra-details-due"
+            type="date"
+            [ngModel]="selectedTask?.dueDate"
+            name="dueDate"
+            [readonly]="!isUpdating"
+            (ngModelChange)="onDueDateChange($event)"
+            [ngClass]="{'edit-outline': isUpdating}"
+            />
+        </div>
+
+        <!-- Task priority  -->
+        <div class="task-details__prioriy-section">
+          <label for="">Priority:</label>
+          <select
+            class="task-details__extra-details-priority"
+            [ngModel]="selectedTask?.priority"
+            name="priority"
+            [disabled]="!isUpdating"
+            (ngModelChange)="onPriorityChange($event)"
+            [ngClass]="{'edit-outline': isUpdating}">
+            <option value="high" >High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+          </select>
+        </div>
+
+        <!-- Task status  -->
+        <div class="task-details__status-section">
+            <label for="">Status:</label>
+          <select
+            class="task-details__extra-details-status"
+            [ngModel]="selectedTask?.taskStatus"
+            [disabled]="!isUpdating"
+            (ngModelChange)="onStatusChange($event)"
+            [ngClass]="{'edit-outline': isUpdating}"
+            >
+            <option value="pending">Pending</option>
+            <option value="completed">Completed</option>
+            <option value="overdue">Overdue</option>
+          </select>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="">
+      <button class="task-details__edit-btn" (click)="updateButtonClicked()">{{ isUpdating ? 'Save' : 'Update' }}</button>
+      <button class="task-details__edit-btn" (click)="deleteButtonClicked()">Delete</button>
+    </div>
+  </div>
+</div>

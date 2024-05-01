@@ -22,13 +22,13 @@
       <div class="create-task__form-group">
         <textarea
           class="create-task__form-control"
-          [ngClass]="{'create-task__is-invalid': isTaskSubmited && newTask.get('taskDiscription')?.invalid}"
-          formControlName="taskDiscription"
+          [ngClass]="{'create-task__is-invalid': isTaskSubmited && newTask.get('taskDescription')?.invalid}"
+          formControlName="taskDescription"
           placeholder=""
           style="height: 100px; resize: none"
         ></textarea>
         <label for="" class="create-task__label">Task Discription</label>
-        @if (isTaskSubmited && newTask.get('taskDiscription')?.invalid) {
+        @if (isTaskSubmited && newTask.get('taskDescription')?.invalid) {
           <div class="create-task__invalid-feedback">
             <div>Discription is required.</div>
           </div>

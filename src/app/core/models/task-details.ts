@@ -12,5 +12,12 @@ export interface TaskDetails {
 export interface completedTask{
     id: string;
     taskStatus: string;
-    isCompleted: boolean;
+}
+
+export interface updateTaskDetails {
+    taskTitle: string | undefined;
+    taskDescription: string | undefined;
+    dueDate: string | undefined;
+    priority: string | undefined;
+    taskStatus: string | any;
 }

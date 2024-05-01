@@ -86,7 +86,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     const task: completedTask = {
       id: taskId,
       taskStatus: "completed",
-      isCompleted: true
   };
   this.taskService.updateCompleted(taskId, task).subscribe(
     (response) => {

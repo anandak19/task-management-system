@@ -1,0 +1,128 @@
+.task-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__header{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 8px 0;
+    }
+
+    &__page-title{
+        border-left: 3px dotted black;
+        border-right: 3px dotted black;
+        padding: 8px 18px;
+        border-radius: 30px;
+    }
+
+    &__body{
+        background-color: #d4ff8e;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        border-radius: 20px;
+        padding: 28px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: end;
+        gap: 14px;
+        max-width: 80%;
+    }
+
+
+    // inside body 
+    &__back-btn{
+        // float: right;
+        background-color: #16C5FC;
+        color: #ffffff;
+        font-weight: 800;
+        padding: 14px;
+        border-radius: 15px;
+        
+    }
+    &__details{
+        box-sizing: border-box;
+    }
+    &__title-discription{
+        padding: 24px;
+        background-color:  #b5ff3e;
+        border-radius: 20px;
+        min-width: 850px;
+    }
+    &__extra-details{
+        margin-top: 14px;
+        display: flex;
+        justify-content: space-between;
+        border-radius: 20px;
+        padding: 14px 24px;
+        background: linear-gradient(to  right, #A7F283, #b5ff3e);
+    }
+
+
+    // inside title-discription 
+    &__title{
+        font-size: 28px;
+        border-left: 6px solid brown;
+        padding-left: 8px;
+        margin-bottom: 14px;
+        background-color: transparent;
+        outline: none;
+        // border: 1px solid black;
+        width: 100%;
+    }
+    &__description{
+        padding-left: 10px;
+        background-color: transparent;
+        width: 100%;
+        font-size: 16px;
+        // height: 200px;
+        min-height: 100px;
+        resize: none; 
+        border: none;
+        outline: none;
+        &::-webkit-scrollbar{
+            width: 12px;
+        }
+        &::-webkit-scrollbar-track{
+            background-color: #87db00;
+        }
+        &::-webkit-scrollbar-thumb{
+            background-color: #528500;
+            border-radius: 6px; 
+        }
+    }
+    .edit-outline {
+        border: 1px solid #007722;
+      }
+
+    // inside extra-details 
+    &__extra-details-due, &__extra-details-priority, &__extra-details-status{
+        font-size: 16px;
+        background-color: #76f83a;
+        margin-left: 8px;
+        outline: none;
+    }
+
+    // &__extra-details-status was added here becouse i was unable to do the other task 
+    &__extra-details-priority, &__extra-details-status{
+        opacity: 1;
+        color: #000000;
+    }
+
+
+    &__edit-btn {
+        border-radius: 10px;
+        padding: 8px 14px;
+        background-color: #16C5FC;
+        transition: all 0.5s;
+        margin-left: 8px;
+        &:hover{
+            background-color: #00a5d7;
+        }
+        &:active {
+            transform: scale(0.9);
+        }
+    }
+}
