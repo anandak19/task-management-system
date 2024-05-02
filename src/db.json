@@ -1,30 +1,67 @@
 {
   "user": [
     {
-      "id": "92b5",
+      "id": "80a3",
+      "firstName": "Anandakss",
+      "lastName": "Hari",
+      "userName": "anandak",
+      "email": "anandan@gmail.com",
+      "password": "Abcd123?",
+      "userImage": "../../../assets/images/user.jpg"
+    },
+    {
+      "id": "74e4",
       "firstName": "Anandakrishnan",
       "lastName": "H",
       "userName": "anandan",
       "email": "anan@gmail.com",
       "password": "Abcd123?",
-      "confirmPassword": "Abcd123?"
+      "userImage": "../../../assets/images/user.jpg"
+    },
+    {
+      "id": "de74",
+      "firstName": "surya",
+      "lastName": "kumar",
+      "userName": "surya",
+      "email": "surya@gmail.com",
+      "password": "Abcd123?",
+      "userImage": "../../../assets/images/user.jpg"
+    },
+    {
+      "id": "4196",
+      "firstName": "mayavi",
+      "lastName": "ak",
+      "userName": "mayavi",
+      "email": "mayavi@gmail.com",
+      "password": "Abcd123?",
+      "userImage": "../../../assets/images/user.jpg"
+    },
+    {
+      "id": "df48",
+      "firstName": "anu",
+      "lastName": "mon",
+      "userName": "anumon",
+      "email": "anu@gmail.com",
+      "password": "Abcd123?",
+      "userImage": "../../../assets/images/user/user.jpg"
+    },
+    {
+      "id": "3c03",
+      "firstName": "maha",
+      "lastName": "lakshmi",
+      "userName": "mahalakshmi",
+      "email": "maha@gmail.com",
+      "password": "Abcd123?",
+      "userImage": "../../../assets/images/user/user.jpg"
     }
   ],
   "userTasks": [
     {
-      "taskTitle": "this is an updated task titles ",
-      "taskDescription": "this is some random disc of task babyyyyyyy",
-      "dueDate": "2024-04-02",
-      "priority": "medium",
-      "taskStatus": "completed",
-      "id": "0ebe"
-    },
-    {
       "taskTitle": "Wash some big car",
-      "taskDescription": "skdnkfdjjjjjjlkdlfk slkdflksd lroem ksjdnfflksnf lorem sdfsjnfskjfnkjnskfjnskjnskjnskdfjnkjfnakj, asakajnkj kjkj kjkjn nkjnkjnkj jhbkn ,ljlkmlkmlk mlkmlk ln;alkkndff  kdf  ahkadhf aiaei  eirjp",
+      "taskDescription": "This is car washThis is car wash This is car wash This is car washThis is car washThis is car washThis is car washThis is car washThis is car washThis is car washThis is car washThis is car washThis is car ",
       "dueDate": "2024-05-09",
       "priority": "medium",
-      "taskStatus": "overdue",
+      "taskStatus": "pending",
       "id": "a083"
     },
     {
@@ -34,6 +71,14 @@
       "dueDate": "2024-05-01",
       "priority": "low",
       "taskStatus": "pending"
+    },
+    {
+      "taskTitle": "manga pari",
+      "taskDescription": "chali kuth",
+      "dueDate": "2024-05-02",
+      "priority": "medium",
+      "taskStatus": "pending",
+      "id": "5de2"
     }
   ]
 }

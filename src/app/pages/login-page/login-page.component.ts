@@ -10,7 +10,12 @@ import {
 import { Router, RouterLink } from '@angular/router';
 import { UserManagementService } from '../../core/services/Users/user-management.service';
 import { CurrentUserService } from '../../core/services/Users/current-user.service';
-import { FullUserDetails, UserDetails } from '../../core/models/user-details';
+import {
+  FullUserDetails,
+  UserDetails,
+  newUserData,
+  returnUserData,
+} from '../../core/models/user-details';
 
 @Component({
   selector: 'app-login-page',
@@ -28,6 +33,7 @@ export class LoginPageComponent {
   ) {}
 
   form!: FormGroup;
+  public CurrentUserData?: returnUserData;
 
   ngOnInit(): void {
     this.form = this._fb.group({
@@ -40,14 +46,15 @@ export class LoginPageComponent {
     if (this.form.valid) {
       const userData = this.form.value;
       this.userService.findUser(userData).subscribe(
-        (user) => {
-          if (user.isAuthenticated) {
-            this.currentUser.setCurrentUser(user.user)            
-            this._route.navigateByUrl('/dashboard')
+        (res) => {
+          if (res.isAuthenticated) {
+            this.currentUser.setCurrentUser(res.user);
+
+            this._route.navigateByUrl('/dashboard');
           } else {
             // User not found, handle non-authenticated user
             alert('User not found');
-            // display an error message, reset the form, etc.
+            // display an error message, reset the form, etc
             this.form.reset();
           }
         },
@@ -55,8 +62,7 @@ export class LoginPageComponent {
           console.error('Error:', error);
           // Handle any errors that occur during the HTTP request
         }
-        
-      )
+      );
     }
   }
 }

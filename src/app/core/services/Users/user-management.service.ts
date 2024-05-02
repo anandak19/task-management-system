@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UserDetails, userLogin } from '../../models/user-details';
+import { UserDetails, newUserData, returnUserData, userLogin } from '../../models/user-details';
 import { Observable, map } from 'rxjs';
 
 @Injectable({
@@ -14,8 +14,8 @@ export class UserManagementService {
   constructor(private _http: HttpClient) {}
 
   // to add new user upon signup 
-  AddtUserDetails(newUser: UserDetails): Observable<any> {
-    return this._http.post(`${this.userUrl}`, newUser);
+  AddtUserDetails(newUser: newUserData): Observable<any> {
+    return this._http.post(`${this.userUrl}`, newUser);    
   }
 
   // to find the user trying to login 
@@ -37,5 +37,12 @@ export class UserManagementService {
   isUserAuthenticated(): boolean {
     return this.isAuthenticatedUser;
   }
+
+  // to update user data 
+  updateUser(userData: returnUserData | any, userId: string):Observable<any>{
+    return this._http.patch(`${this.userUrl}/${userId}`, userData);  
+  }
+
+
 
 }

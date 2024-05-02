@@ -29,7 +29,7 @@
         align-items: center;
     }
 
-
+// user image 
     &__user-image{
         width: 120px;
         height: 120px;
@@ -63,10 +63,11 @@
 
 
 
+    // user details ---------------------
     &__user-details{
         margin-top: 18px;
         display: grid;
-        grid-template-columns: repeat(2, 250px);
+        grid-template-columns: repeat(2, 350px);
         grid-template-rows: repeat(3, auto);
         gap: 16px;
     }
@@ -79,6 +80,37 @@
         padding: 14px;
         border-radius: 20px;
     }
+
+    // user label and input 
+    &__label{
+        font-size: 18px;
+        padding-right: 4px;
+    }
+    &__user-data-show{
+        background-color: transparent;
+        font-size: 18px;
+        padding: 4px;
+        border-bottom: 1px solid black;
+        outline: none;
+        width: 200px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     &__user-actions{
         margin: 12px 0;
     }

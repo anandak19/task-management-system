@@ -1,7 +1,19 @@
 <div class="header">
     <h1 class="header__brand-name">Task Manager</h1>
-    <div class="header__profile-section"></div>
+    <div class="header__profile-section" (click)="viewProfileClicked()">
+        @if (isUserLogin) {
+            <p>Profile</p>
+        }
+        <div class="header__img-circle">
+            @if (isUserLogin) {
+                <img [src]="userImage" alt="user">
+            }@else {
+                <img src='../../../../assets/images/user/initial-user.png' alt="">
+            }
+        </div>
+    </div>
 </div>
+
 <router-outlet />
 
 

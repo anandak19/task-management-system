@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserTaskManagementService } from '../../core/services/Tasks/user-task-management.service';
 import { TaskDetails, updateTaskDetails } from '../../core/models/task-details';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { SrvRecord } from 'dns';
 
 @Component({
@@ -28,11 +28,12 @@ export class TaskDetailsPageComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private taskService: UserTaskManagementService
+    private taskService: UserTaskManagementService,
+    private location: Location
   ) {}
 
   goBackClicked() {
-    this.router.navigate(['/']);
+    this.location.back();
   }
 
   onTaskTitleChange(title: string): void {

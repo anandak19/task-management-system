@@ -9,8 +9,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { UserDetails } from '../../core/models/user-details';
+import { UserDetails, newUserData } from '../../core/models/user-details';
 import { UserManagementService } from '../../core/services/Users/user-management.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-signup-page',
@@ -27,7 +28,7 @@ export class SignupPageComponent {
   ) {}
 
   form!: FormGroup;
-  newUserDetails!: UserDetails;
+  newUserDetails!: newUserData;
   isSubmitted: boolean = false;
   tooShort?: boolean;
 
@@ -53,7 +54,7 @@ export class SignupPageComponent {
           Validators.required,
           this.confirmPasswordValidator,
         ]),
-      ], // Custom validator for matching passwords
+      ],
     });
   }
 
@@ -94,15 +95,42 @@ export class SignupPageComponent {
       : null;
   }
 
+  // functions ------------
+
   // sign up function ------------------
   signup() {
     this.isSubmitted = true;
     if (this.form.valid) {
-      this.userService.AddtUserDetails(this.form.value).subscribe(
+      this.newUserDetails = {
+        firstName: this.form.value.firstName,
+        lastName: this.form.value.lastName,
+        userName: this.form.value.userName,
+        email: this.form.value.email,
+        password: this.form.value.password,
+        userImage: '../../../assets/images/user/user.jpg'
+      };
+
+      this.userService.AddtUserDetails(this.newUserDetails).subscribe(
         (response) => {
-          this.route.navigateByUrl("")
+
           // add a sucessfull signup toaster message here ------------
-          console.log(response.userName);
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
+          Toast.fire({
+            icon: "success",
+            title: "Signed in successfully"
+          });
+          this.route.navigateByUrl('login')
+          console.log(response);
         },
         (error) => {
           console.log(error);

@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { UserTaskManagementService } from '../../core/services/Tasks/user-task-management.service';
 import { TaskDetails, completedTask } from '../../core/models/task-details';
 import { CommonModule } from '@angular/common';
+import { returnUserData } from '../../core/models/user-details';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +15,7 @@ import { CommonModule } from '@angular/common';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   // declarations ---------
-  currentUser: any;
+  public currentUserData?: returnUserData;
   public taskList: TaskDetails[] = [];
   public completedTaskList: TaskDetails[] = [];
   public completedClass = 'dashboard__task-tiles-task-completed';
@@ -27,7 +28,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private userService: CurrentUserService,
     private taskService: UserTaskManagementService
   ) {
-    this.currentUser = this.userService.getCurrentUser();
+    this.currentUserData = this.userService.getCurrentUser();
   }
 
   // functions ------------
@@ -106,6 +107,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
 
 
+
+
+
   // when OnInit
   ngOnInit(): void {
     this.displayTasks();
@@ -113,6 +117,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   // remove this after logout out feature is implemented
   ngOnDestroy(): void {
-    localStorage.clear();
+    // localStorage.clear();
   }
 }
