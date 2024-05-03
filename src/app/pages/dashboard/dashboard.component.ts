@@ -5,6 +5,9 @@ import { UserTaskManagementService } from '../../core/services/Tasks/user-task-m
 import { TaskDetails, completedTask } from '../../core/models/task-details';
 import { CommonModule } from '@angular/common';
 import { returnUserData } from '../../core/models/user-details';
+import { Chart, registerables } from 'chart.js';
+
+Chart.register(...registerables)
 
 @Component({
   selector: 'app-dashboard',
@@ -31,7 +34,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.currentUserData = this.userService.getCurrentUser();
   }
 
-  // functions ------------
+  // functions start-------------------------
   // to display all tasks 
   displayTasks() {
     this.taskService.getTask().subscribe(
@@ -46,7 +49,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     );
   }
 
-  // function to filter
+  // function to filter by task status
   selectItem(filterItem: string): void {
     if (filterItem === 'alltasks') {
       this.displayTasks();
@@ -65,6 +68,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
+  // function to delete a task from task list 
   deleteTaskClicked(taskId: string) {
     this.taskService.deleteTask(taskId).subscribe(
       () => {
@@ -81,7 +85,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     );
   }
 
-  // completedTask
+  //function to complete a Task
   completedTaskClicked(taskId: string) {
     const selectedTask = this.taskList.find((task) => task.id === taskId);
     const task: completedTask = {
@@ -105,6 +109,40 @@ export class DashboardComponent implements OnInit, OnDestroy {
     
   }
 
+  // function to disply and render task by priority on pie chart 
+  renderChart(high: number, medium: number, low: number) {
+    let chart = new Chart('piechart', {
+      type: 'pie',
+      data: {
+        labels: ['high', 'medium', 'low'],
+        datasets: [
+          {
+            label: 'Task count',
+            data: [high, medium, low],
+            backgroundColor: [
+              'rgb(255, 44, 44)',
+              'rgb(255, 113, 31)',
+              'rgb(255, 188, 19)',
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+            ],
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        responsive: false,
+        maintainAspectRatio: false,
+      },
+    });
+  }
+
+
+
+    // functions end-------------------------
 
 
 
@@ -113,6 +151,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   // when OnInit
   ngOnInit(): void {
     this.displayTasks();
+    this.renderChart(10, 11, 15);
   }
 
   // remove this after logout out feature is implemented

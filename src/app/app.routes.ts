@@ -3,12 +3,12 @@ import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   // {
-  //   path: '',
+  //   path: 'dashboard',
   //   redirectTo: 'profile',
   //   pathMatch: 'full',
   // },
   {
-    path: '',
+    path: 'll',
     loadComponent: () =>
       import('./pages/login-page/login-page.component').then(
         (c) => c.LoginPageComponent
@@ -36,7 +36,8 @@ export const routes: Routes = [
   },
 
   {
-    path: 'dashboard',
+    // path: 'dashboard',
+    path: '',
     // canActivateChild: [authGuard],
     children: [
       {

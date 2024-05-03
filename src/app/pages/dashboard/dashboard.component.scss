@@ -32,13 +32,13 @@
 
     // body sections 
     &__task-tiles-section{
-      background-color: rgb(202, 202, 202);
+      background-color: rgb(218, 218, 218);
       flex-grow: 6;
       max-width: 60%;
       // padding: 14px 14px;
     }
     &__pie-chart-section{
-      background-color: blueviolet;
+      background-color: rgb(218, 218, 218);
       flex-grow: 4;
       padding: 14px 0;
     }
@@ -188,6 +188,16 @@
       &:active{
         transform: scale(0.95);
       }
+    }
+
+    // inside pie chart 
+    &__pie-chart-container{
+      background-color: transparent;
+
+    }
+    &__piechart{
+      display: block;
+      margin: 14px auto; 
     }
     
 

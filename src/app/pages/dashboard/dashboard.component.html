@@ -10,6 +10,8 @@
 
   <!-- body section  -->
   <div class="dashboard__body">
+
+    <!-- task tiles start  -->
     <div class="dashboard__task-tiles-section">
       <div class="dashboard__task-tiles-container">
         <div class="dashboard__task-tiles-head">
@@ -65,11 +67,16 @@
         </div>
       </div>
     </div>
+    <!-- task tiles end  -->
 
+    <!-- pie chart start  -->
     <div class="dashboard__pie-chart-section">
       <div class="dashboard__pie-chart-container">
-        <h1 class="dashboard__section-title">Your Activity</h1>
+        <h1 class="dashboard__section-title">Priority Analysis</h1>
+        <canvas id="piechart" class="dashboard__piechart" height="400" width="300"></canvas>
       </div>
     </div>
+    <!-- pie chart end  -->
+
   </div>
 </div>
