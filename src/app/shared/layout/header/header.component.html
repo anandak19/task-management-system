@@ -8,7 +8,7 @@
             @if (isUserLogin) {
                 <img [src]="userImage" alt="user">
             }@else {
-                <img src='../../../../assets/images/user/initial-user.png' alt="">
+                <img [src]= "userImage" alt="">
             }
         </div>
     </div>

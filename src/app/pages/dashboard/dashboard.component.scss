@@ -1,16 +1,15 @@
 .dashboard {
     height: calc(100dvh - 70px);
-    
   
     &__header{
       display: flex;
       flex-direction: column;
-      background-color: rgb(255, 241, 241);
       padding: 12px 24px;
     }
     &__greetings{
       font-size: 22px;
       font-weight: 200;
+      margin-top: -20px;
     }
     &__page-title{
       display: flex;

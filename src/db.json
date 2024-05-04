@@ -57,28 +57,12 @@
   ],
   "userTasks": [
     {
-      "taskTitle": "Wash some big car",
-      "taskDescription": "This is car washThis is car wash This is car wash This is car washThis is car washThis is car washThis is car washThis is car washThis is car washThis is car washThis is car washThis is car washThis is car ",
-      "dueDate": "2024-05-09",
-      "priority": "medium",
-      "taskStatus": "pending",
-      "id": "a083"
-    },
-    {
-      "id": "c064",
-      "taskTitle": "Make arrangements for buying new cloths to poor people",
-      "taskDescription": "Make arrangements for buying new cloths to poor people of dholapoorMake arrangements for buying new cloths to poor people of dholapoor.Make arrangements for buying new cloths to poor people of dholapoor",
-      "dueDate": "2024-05-01",
+      "id": "dab5",
+      "taskTitle": "low",
+      "taskDescription": "d",
+      "dueDate": "2024-05-20",
       "priority": "low",
       "taskStatus": "pending"
-    },
-    {
-      "taskTitle": "manga pari",
-      "taskDescription": "chali kuth",
-      "dueDate": "2024-05-02",
-      "priority": "medium",
-      "taskStatus": "pending",
-      "id": "5de2"
     }
   ]
 }

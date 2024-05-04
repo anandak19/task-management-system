@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { FullUserDetails, UserDetails, newUserData, returnUserData } from '../../models/user-details';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { UserManagementService } from './user-management.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CurrentUserService {
 
-  constructor(private _router: Router) { }
+  constructor(private _router: Router, public _userService: UserManagementService) { }
 
   public currentUser?: returnUserData | any;
 
@@ -28,6 +29,7 @@ export class CurrentUserService {
   logout(): void {
     this.currentUser = null;
     this._router.navigateByUrl('')
+    this._userService.isLogout(false);
     const Toast = Swal.mixin({
       toast: true,
       position: "center",

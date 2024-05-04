@@ -13,7 +13,7 @@ import { UserManagementService } from '../../../core/services/Users/user-managem
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent implements DoCheck {
+export class HeaderComponent implements DoCheck, OnInit {
   public currentUserData?: returnUserData;
   public userImage?: string;
   isUserLogin = false;
@@ -31,6 +31,9 @@ export class HeaderComponent implements DoCheck {
     this._router.navigateByUrl('/profile');
   }
 
+  ngOnInit(): void {
+    this.userImage = '../../../../assets/images/user/initial-user.png'
+  }
   // check if the user is loged in
   // then chege the profile icon 
   ngDoCheck(): void {
@@ -42,6 +45,7 @@ export class HeaderComponent implements DoCheck {
   }
   // clear current user image 
   ngOnDestroy(): void{
-    this.userImage = '';
+    this.isUserLogin = false
+    this.userImage = '../../../../assets/images/user/initial-user.png';
   }
 }

@@ -1,13 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CurrentUserService } from '../../core/services/Users/current-user.service';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { UserTaskManagementService } from '../../core/services/Tasks/user-task-management.service';
 import { TaskDetails, completedTask } from '../../core/models/task-details';
 import { CommonModule } from '@angular/common';
 import { returnUserData } from '../../core/models/user-details';
 import { Chart, registerables } from 'chart.js';
-
-Chart.register(...registerables)
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,17 +15,14 @@ Chart.register(...registerables)
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
-export class DashboardComponent implements OnInit, OnDestroy {
+export class DashboardComponent implements OnInit {
   // declarations ---------
   public currentUserData?: returnUserData;
   public taskList: TaskDetails[] = [];
-  public completedTaskList: TaskDetails[] = [];
   public completedClass = 'dashboard__task-tiles-task-completed';
+  public chartInstance: Chart | any;
 
-
-
-
-// constructor ---------
+  // constructor ---------
   constructor(
     private userService: CurrentUserService,
     private taskService: UserTaskManagementService
@@ -34,8 +30,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.currentUserData = this.userService.getCurrentUser();
   }
 
-  // functions start-------------------------
-  // to display all tasks 
+  // when OnInit
+  ngOnInit(): void {
+    this.renderDashboardData();
+  }
+
+// ---------functions start-------
+
+  // to display all tasks
   displayTasks() {
     this.taskService.getTask().subscribe(
       (response) => {
@@ -48,6 +50,46 @@ export class DashboardComponent implements OnInit, OnDestroy {
       }
     );
   }
+  // functions to disply and render task by priority on pie chart
+  displayChart() {
+    console.log(this.taskList);
+    let highPriorityTasks = this.taskList.filter(
+      (task) => task.priority === 'high'
+    ).length;
+    let mediumPriorityTasks = this.taskList.filter(
+      (task) => task.priority === 'medium'
+    ).length;
+    let lowPriorityTasks = this.taskList.filter(
+      (task) => task.priority === 'low'
+    ).length;
+    this.renderChart(highPriorityTasks, mediumPriorityTasks, lowPriorityTasks);
+  }
+  renderChart(high: number, medium: number, low: number) {
+    Chart.register(...registerables);
+
+    if (this.chartInstance) {
+      this.chartInstance.destroy();
+    }
+
+    this.chartInstance = new Chart("piechart", {
+      type: 'pie',
+      data: {
+        labels: ['High Priority', 'Medium Priority', 'Low Priority'],
+        datasets: [{
+          label: 'Task count',
+          data: [high, medium, low],
+          backgroundColor: ['rgb(255, 44, 44)', 'rgb(255, 113, 31)', 'rgb(255, 188, 19)'],
+          borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
+          borderWidth: 1,
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+      }
+    });
+  }
+
 
   // function to filter by task status
   selectItem(filterItem: string): void {
@@ -61,101 +103,90 @@ export class DashboardComponent implements OnInit, OnDestroy {
           });
         },
         (error) => {
-          console.error('Error:', error);
-          // Handle any errors that occur during the HTTP request
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+          });
         }
       );
     }
   }
 
-  // function to delete a task from task list 
+  // function to delete a task from task list
   deleteTaskClicked(taskId: string) {
-    this.taskService.deleteTask(taskId).subscribe(
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.taskService.deleteTask(taskId).subscribe(
+          () => {
+            // Success case
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success"
+            });
+            this.renderDashboardData();
+          },
+          (error) => {
+            // Error case
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Something went wrong!",
+            });
+          }
+        );
+
+      }
+    });
+
+
+
+
+  }
+
+  //function to mark a task as completed
+  completedTaskClicked(taskId: string) {
+    const task: completedTask = {
+      id: taskId,
+      taskStatus: 'completed',
+    };
+    this.taskService.updateCompleted(taskId, task).subscribe(
       () => {
-        // Success case
-        this.displayTasks();
-        console.log('Task deleted successfully');
-        // perform any additional actions after successful deletion
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Successfully completed the task",
+          showConfirmButton: false,
+          timer: 2000
+        });
+        this.renderDashboardData();
       },
       (error) => {
-        // Error case
-        console.error('Error deleting task:', error);
-        // display an error message or perform other error handling actions
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
       }
     );
   }
 
-  //function to complete a Task
-  completedTaskClicked(taskId: string) {
-    const selectedTask = this.taskList.find((task) => task.id === taskId);
-    const task: completedTask = {
-      id: taskId,
-      taskStatus: "completed",
-  };
-  this.taskService.updateCompleted(taskId, task).subscribe(
-    (response) => {
-      console.log(response);
-      // toast a completed message ----------------
-      this.displayTasks()
-      
-    },
-    (error) => {
-      console.error('Error:', error);
-      // toast error message------------------
-      // Handle any errors that occur during the HTTP request
-    }
-  )
-
-    
-  }
-
-  // function to disply and render task by priority on pie chart 
-  renderChart(high: number, medium: number, low: number) {
-    let chart = new Chart('piechart', {
-      type: 'pie',
-      data: {
-        labels: ['high', 'medium', 'low'],
-        datasets: [
-          {
-            label: 'Task count',
-            data: [high, medium, low],
-            backgroundColor: [
-              'rgb(255, 44, 44)',
-              'rgb(255, 113, 31)',
-              'rgb(255, 188, 19)',
-            ],
-            borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-            ],
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: {
-        responsive: false,
-        maintainAspectRatio: false,
-      },
-    });
-  }
-
-
-
-    // functions end-------------------------
-
-
-
-
-
-  // when OnInit
-  ngOnInit(): void {
+  // to display all tasks and pie chart 
+  renderDashboardData() {
     this.displayTasks();
-    this.renderChart(10, 11, 15);
+    setTimeout(() => {
+      this.displayChart();
+    }, 1000);
   }
 
-  // remove this after logout out feature is implemented
-  ngOnDestroy(): void {
-    // localStorage.clear();
-  }
+// ---------functions end-------
 }
