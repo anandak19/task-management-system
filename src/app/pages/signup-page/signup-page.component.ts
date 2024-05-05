@@ -9,9 +9,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { UserDetails, newUserData } from '../../core/models/user-details';
-import { UserManagementService } from '../../core/services/Users/user-management.service';
+import { newUserData } from '../../core/models/user-details';
 import Swal from 'sweetalert2'
+import { UsersManagementService } from '../../shared/services/user/users-management.service';
 
 @Component({
   selector: 'app-signup-page',
@@ -23,7 +23,7 @@ import Swal from 'sweetalert2'
 export class SignupPageComponent {
   constructor(
     private _fb: FormBuilder,
-    private userService: UserManagementService,
+    private userService: UsersManagementService,
     private route: Router
   ) {}
 

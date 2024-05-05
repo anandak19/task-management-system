@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
-import { FullUserDetails, UserDetails, newUserData, returnUserData } from '../../models/user-details';
-import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { UserManagementService } from './user-management.service';
+import { returnUserData } from '../../../core/models/user-details';
+import { Router } from '@angular/router';
+import { UsersManagementService } from './users-management.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CurrentUserService {
+export class CurrentUserManagementService {
 
-  constructor(private _router: Router, public _userService: UserManagementService) { }
+  constructor(private _router: Router, public _userService: UsersManagementService) { }
 
-  public currentUser?: returnUserData | any;
+  public currentUser?: returnUserData | null;
 
   // to store the current user deatails 
   setCurrentUser(user: any): void {
-    this.currentUser = user;    
-    // localStorage.setItem('currentUser', JSON.stringify(user));
+    this.currentUser = { ...user };    
   }
+  // localStorage.setItem('currentUser', JSON.stringify(user));
 
   // to get the current user deatails 
   getCurrentUser(): returnUserData | any {
@@ -45,6 +45,5 @@ export class CurrentUserService {
       title: "Logout successfully"
     });
   }
-
 
 }

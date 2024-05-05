@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserTaskManagementService } from '../../core/services/Tasks/user-task-management.service';
 import { updateTaskDetails } from '../../core/models/task-details';
 import { FormsModule } from '@angular/forms';
 import { CommonModule, Location } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
+import { TaskManagementService } from '../../shared/services/tasks/task-management.service';
 
 @Component({
   selector: 'app-task-details-page',
@@ -31,7 +31,7 @@ export class TaskDetailsPageComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private taskService: UserTaskManagementService,
+    private taskService: TaskManagementService,
     private location: Location
   ) {}
 

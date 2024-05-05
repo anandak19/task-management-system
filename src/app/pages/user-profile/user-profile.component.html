@@ -11,7 +11,7 @@
     </div>
 
     <div class="user-profile__user-image" (click)="fileInput.click()">
-      <img #userImage [src]="profileImage" />
+      <img #userImage [src]="newImage" />
       <img src="../../../assets/images/user.jpg" alt="" />
       <input
         #fileInput
@@ -19,6 +19,7 @@
         accept="image/*"
         (change)="onFileSelected($event)"
         style="display: none"
+        [disabled]="!isUpdating"
       />
     </div>
 

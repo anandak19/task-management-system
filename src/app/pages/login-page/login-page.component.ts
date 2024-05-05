@@ -8,17 +8,14 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { UserManagementService } from '../../core/services/Users/user-management.service';
-import { CurrentUserService } from '../../core/services/Users/current-user.service';
 import {
-  FullUserDetails,
-  UserDetails,
-  newUserData,
   returnUserData,
 } from '../../core/models/user-details';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEye, faEyeSlash, faLock } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
+import { UsersManagementService } from '../../shared/services/user/users-management.service';
+import { CurrentUserManagementService } from '../../shared/services/user/current-user-management.service';
 
 @Component({
   selector: 'app-login-page',
@@ -36,9 +33,9 @@ import Swal from 'sweetalert2';
 export class LoginPageComponent {
   constructor(
     private _fb: FormBuilder,
-    private userService: UserManagementService,
+    private userService: UsersManagementService,
     private _route: Router,
-    private currentUser: CurrentUserService
+    private currentUser: CurrentUserManagementService
   ) {}
 
   form!: FormGroup;
@@ -66,6 +63,8 @@ export class LoginPageComponent {
       this.userService.findUser(userData).subscribe(
         (res) => {
           if (res.isAuthenticated) {
+            console.log(res.user);
+            
             this.currentUser.setCurrentUser(res.user);
             const Toast = Swal.mixin({
               toast: true,

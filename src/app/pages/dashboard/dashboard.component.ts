@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CurrentUserService } from '../../core/services/Users/current-user.service';
 import { RouterLink } from '@angular/router';
-import { UserTaskManagementService } from '../../core/services/Tasks/user-task-management.service';
 import { TaskDetails, completedTask } from '../../core/models/task-details';
 import { CommonModule } from '@angular/common';
 import { returnUserData } from '../../core/models/user-details';
@@ -9,6 +7,8 @@ import { Chart, registerables } from 'chart.js';
 import Swal from 'sweetalert2';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowUpRightFromSquare, faCircle, faCircleCheck, faPlus, faSortDown, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { CurrentUserManagementService } from '../../shared/services/user/current-user-management.service';
+import { TaskManagementService } from '../../shared/services/tasks/task-management.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -33,8 +33,8 @@ export class DashboardComponent implements OnInit {
 
   // constructor ---------
   constructor(
-    private userService: CurrentUserService,
-    private taskService: UserTaskManagementService
+    private userService: CurrentUserManagementService,
+    private taskService: TaskManagementService
   ) {
     this.currentUserData = this.userService.getCurrentUser();
   }

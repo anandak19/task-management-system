@@ -16,14 +16,6 @@ export interface newUserData {
   userImage: string;
 }
 
-export interface newUserData {
-  firstName: string;
-  lastName: string;
-  userName: string;
-  email: string;
-  password: string;
-  userImage: string;
-}
 
 export interface returnUserData {
   id: string;
@@ -34,7 +26,6 @@ export interface returnUserData {
   password: string;
   userImage: string;
 }
-
 
 export interface FullUserDetails {
   id: string;

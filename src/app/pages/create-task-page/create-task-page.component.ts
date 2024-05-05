@@ -9,12 +9,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { UserTaskManagementService } from '../../core/services/Tasks/user-task-management.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import { CurrentUserService } from '../../core/services/Users/current-user.service';
-import { response } from 'express';
-import { newTaskDetails } from '../../core/models/task-details';
+import { CurrentUserManagementService } from '../../shared/services/user/current-user-management.service';
+import { TaskManagementService } from '../../shared/services/tasks/task-management.service';
 
 @Component({
   selector: 'app-create-task-page',
@@ -32,17 +30,16 @@ import { newTaskDetails } from '../../core/models/task-details';
 export class CreateTaskPageComponent {
   constructor(
     private _fb: FormBuilder,
-    private _taskService: UserTaskManagementService,
+    private _taskService: TaskManagementService,
     private _route: Router,
     private location: Location,
-    private currentUser: CurrentUserService
+    private currentUser: CurrentUserManagementService
   ) {}
 
   newTask!: FormGroup;
   isTaskSubmited = false;
   public myClass = 'create-task__is-invalid';
   public userId? : string
-  public newTaskData? : newTaskDetails;
   faBack = faArrowLeft;
 
   ngOnInit(): void {
@@ -82,9 +79,6 @@ export class CreateTaskPageComponent {
   addTask() {
     this.isTaskSubmited = true;
     if (this.newTask.valid) {
-
-      this.newTaskData = { ...this.newTask.value, userId: this.userId };
-      console.log(this.newTaskData);
       
       this._taskService.addnewTask(this.newTask.value).subscribe(
         (response) => {

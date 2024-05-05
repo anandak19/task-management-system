@@ -1,12 +1,12 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { UserManagementService } from '../../core/services/Users/user-management.service';
 import { FormsModule } from '@angular/forms';
-import { CommonModule, Location } from '@angular/common';
-import { CurrentUserService } from '../../core/services/Users/current-user.service';
+import { CommonModule } from '@angular/common';
 import { returnUserData } from '../../core/models/user-details';
 import { Router } from '@angular/router';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { UsersManagementService } from '../../shared/services/user/users-management.service';
+import { CurrentUserManagementService } from '../../shared/services/user/current-user-management.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -23,37 +23,45 @@ export class UserProfileComponent {
   public newLastName?: string;
   public newEmail?: string;
   public newPassword?: string;
-  public newUserImage?: string;
+  public newImage?: string;
 
   public currentUser?: returnUserData;
   public userId?: string | any;
   public updatedUserData?: returnUserData | any;
   faBack = faArrowLeft;
 
+  @ViewChild('userImage') userImage!: ElementRef;
+  @ViewChild('fileInput') fileInput!: ElementRef;
+
   constructor(
-    private _userService: UserManagementService,
-    private _currentUserService: CurrentUserService,
-    private location: Location
+    private _userService: UsersManagementService,
+    private _currentUserService: CurrentUserManagementService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.currentUser = this._currentUserService.getCurrentUser();
     this.isUpdating = false;
-    console.log(this.currentUser?.id);
     this.userId = this.currentUser?.id;
+    this.newImage = this.currentUser?.userImage;
   }
 
-  @ViewChild('userImage') userImage!: ElementRef;
-  @ViewChild('fileInput') fileInput!: ElementRef;
+  ngOnDestroy(): void {
+    this.currentUser = undefined;
+    this.newImage = undefined;
+    this.isUpdating = false;
+    this.userId = null;
+  }
 
-  profileImage: string = '../../../assets/images/user.jpg';
+
+
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     const reader = new FileReader();
 
     reader.onload = (e: any) => {
-      this.profileImage = e.target.result;
+      this.newImage = e.target.result;
     };
 
     reader.readAsDataURL(file);
@@ -63,8 +71,9 @@ export class UserProfileComponent {
     this.fileInput.nativeElement.click();
   }
 
+  //navigate back
   goBackClicked() {
-    this.location.back();
+    this.router.navigate(['/dashboard']);
   }
   // add feature to show user data on html
 
@@ -84,9 +93,6 @@ export class UserProfileComponent {
   onPasswordChange(password: string): void {
     this.newPassword = password;
   }
-  onUserImageChange(userImage: string): void {
-    this.newUserImage = userImage;
-  }
   // change ditections end
 
   updateButtonClicked() {
@@ -97,7 +103,9 @@ export class UserProfileComponent {
       userName: this.newUserName,
       email: this.newEmail,
       password: this.newPassword,
+      userImage: this.newImage
     }
+    this._currentUserService.setCurrentUser(this.updatedUserData)
 
     this._userService.updateUser(this.updatedUserData, this.userId)
     .subscribe(

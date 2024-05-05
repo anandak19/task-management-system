@@ -1,12 +1,11 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { SignupPageComponent } from '../../../pages/signup-page/signup-page.component';
 import { Router, RouterOutlet } from '@angular/router';
-import { CreateTaskPageComponent } from '../../../pages/create-task-page/create-task-page.component';
-import { CurrentUserService } from '../../../core/services/Users/current-user.service';
 import { returnUserData } from '../../../core/models/user-details';
-import { UserManagementService } from '../../../core/services/Users/user-management.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCalendarCheck } from '@fortawesome/free-solid-svg-icons';
+import { CurrentUserManagementService } from '../../services/user/current-user-management.service';
+import { UsersManagementService } from '../../services/user/users-management.service';
 
 @Component({
   selector: 'app-header',
@@ -23,8 +22,8 @@ export class HeaderComponent implements DoCheck, OnInit {
   
 
   constructor(
-    private _currentUserService: CurrentUserService,
-    private _userManagement: UserManagementService,
+    private _currentUserService: CurrentUserManagementService,
+    private _userManagement: UsersManagementService,
     private _router: Router
   ) {}
   

@@ -1,19 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  UserDetails,
-  newUserData,
-  returnUserData,
-  userLogin,
-} from '../../models/user-details';
 import { Observable, map } from 'rxjs';
+import { newUserData, userLogin, UserDetails, returnUserData } from '../../../core/models/user-details';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class UserManagementService {
+export class UsersManagementService {
+
   private userUrl = 'http://localhost:3000/user';
-  // http://localhost:3000/userTasks
   private isAuthenticatedUser = false;
 
   constructor(private _http: HttpClient) {}
