@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TaskDetails, completedTask, updateTaskDetails } from '../../models/task-details';
+import { TaskDetails, completedTask, newTaskDetails, updateTaskDetails } from '../../models/task-details';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class UserTaskManagementService {
 
   constructor(private _http: HttpClient) { }
 
-  addnewTask(taskDetails: TaskDetails): Observable<any>{
+  addnewTask(taskDetails: newTaskDetails): Observable<any>{
     return this._http.post(`${this.userTaskUrl}`, taskDetails);
   }
 

@@ -16,11 +16,20 @@ import {
   newUserData,
   returnUserData,
 } from '../../core/models/user-details';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faEye, faEyeSlash, faLock } from '@fortawesome/free-solid-svg-icons';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterLink,
+    FontAwesomeModule,
+  ],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss',
 })
@@ -34,6 +43,11 @@ export class LoginPageComponent {
 
   form!: FormGroup;
   public CurrentUserData?: returnUserData;
+  isSubmitted: boolean = false;
+  hidePassword: boolean = true;
+  faLock = faLock;
+  faEyeSlash = faEyeSlash
+  faEye= faEye
 
   ngOnInit(): void {
     this.form = this._fb.group({
@@ -41,28 +55,58 @@ export class LoginPageComponent {
       password: ['', [Validators.required]],
     });
   }
+  togglePasswordVisibility() {
+    this.hidePassword = !this.hidePassword;
+  }
 
   login() {
+    this.isSubmitted = true;
     if (this.form.valid) {
       const userData = this.form.value;
       this.userService.findUser(userData).subscribe(
         (res) => {
           if (res.isAuthenticated) {
             this.currentUser.setCurrentUser(res.user);
-
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 2000,
+              didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              },
+            });
+            Toast.fire({
+              icon: 'success',
+              title: 'Login successful!',
+            });
             this._route.navigateByUrl('/dashboard');
           } else {
-            // User not found, handle non-authenticated user
-            alert('User not found');
-            // display an error message, reset the form, etc
+            Swal.fire({
+              icon: 'warning',
+              title: 'User not found !',
+              text: 'try again',
+              confirmButtonText: 'OK',
+              confirmButtonColor: '#3d5653',
+            });
             this.form.reset();
           }
         },
         (error) => {
-          console.error('Error:', error);
-          // Handle any errors that occur during the HTTP request
+          Swal.fire({
+            icon: 'error',
+            title: 'Internal Server Error',
+            text: 'Oops! Something went wrong',
+            confirmButtonColor: '#153935',
+          });
         }
       );
+    } else {
+      Swal.fire({
+        title: 'Please enter all details',
+        confirmButtonColor: '#153935',
+      });
     }
   }
 }

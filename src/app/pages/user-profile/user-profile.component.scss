@@ -1,135 +1,154 @@
-.user-profile{
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  i &__header {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;i
-    &__header{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 10px 0;
+    align-items: center;
+    margin: 10px 0;
+  }
+  &__page-title {
+    border-left: 3px dotted black;
+    border-right: 3px dotted black;
+    margin: 8px 0;
+    padding: 8px 18px;
+    border-radius: 30px;
+  }
+  &__body {
+    background-color: #d2c08f;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin: 12px 0;
+    padding: 22px;
+    box-sizing: border-box;
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 14px;
+    justify-content: center;
+    align-items: center;
+  }
+  &__back {
+    display: flex;
+    justify-content: right;
+    width: 100%;
+  }
+  &__back-btn {
+    background-color: #3d5653;
+    color: #ffffff;
+    font-weight: 700;
+    padding: 14px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    transition: all ease 0.3s;
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     }
-    &__page-title{
-        border-left: 3px dotted black;
-        border-right: 3px dotted black;
-        margin: 8px 0;
-        padding: 8px 18px;
-        border-radius: 30px;
+  }
+
+  // user image
+  &__user-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-top: -18px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
-    &__body{
-        background-color: #b6b6b6;
-        margin: 22px 0;
-        padding: 22px;
-        box-sizing: border-box;
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-        justify-content: center;
-        align-items: center;
+    &::before {
+      content: "+";
+      font-size: 50px;
+      line-height: 120px;
+      text-align: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      display: none;
     }
-
-// user image 
-    &__user-image{
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        overflow: hidden;
-        position: relative;
-        cursor: pointer;
-        & img{
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        &::before{
-            content: '+';
-            font-size: 50px;
-            line-height: 120px;
-            text-align: center;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            display: none;
-        }
-        &:hover::before{
-            display: block;
-        }
+    &:hover::before {
+      display: block;
     }
+  }
 
+  // user details ---------------------
+  &__user-details {
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: repeat(2, 350px);
+    grid-template-rows: repeat(3, auto);
+    gap: 16px;
+  }
+  &__user-username-row {
+    grid-column: span 2;
+    text-align: center;
+  }
+  &__username-box,
+  &__firstname-box,
+  &__lastname-box,
+  &__password-box,
+  &__email-box {
+    background-color: #f2f0d8;
+    padding: 14px;
+    border-radius: 20px;
+  }
 
+  // user label and input
+  &__label {
+    font-size: 18px;
+    padding-right: 4px;
+  }
+  &__user-data-show {
+    background-color: transparent;
+    font-size: 18px;
+    padding: 4px;
+    outline: none;
+    width: 200px;
+}
+.updating-details{
+      border-bottom: 1px solid black;
+  }
 
-    // user details ---------------------
-    &__user-details{
-        margin-top: 18px;
-        display: grid;
-        grid-template-columns: repeat(2, 350px);
-        grid-template-rows: repeat(3, auto);
-        gap: 16px;
+  &__user-actions {
+    margin: 12px 0;
+  }
+  &__edit-btn,
+  &__logout-btn {
+    padding: 8px 18px;
+    width: 100px;
+    border-radius: 10px;
+    background-color: #3d5653;
+    color: #ffffff;
+    font-weight: 700;
+    margin: 0 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    &:hover {
+      background-color: #293e3c;
+      transform: scale(1.1);
     }
-    &__user-username-row{
-        grid-column: span 2;
-        text-align: center;
+    &:active {
+      transform: scale(0.9);
     }
-    &__username-box, &__firstname-box, &__lastname-box, &__password-box, &__email-box{
-        background-color: #00ad8e;
-        padding: 14px;
-        border-radius: 20px;
-    }
+  }
+  .btn-acive{
+    background-color: #293e3c;
+    transform: scale(1.1);
+  }
 
-    // user label and input 
-    &__label{
-        font-size: 18px;
-        padding-right: 4px;
-    }
-    &__user-data-show{
-        background-color: transparent;
-        font-size: 18px;
-        padding: 4px;
-        border-bottom: 1px solid black;
-        outline: none;
-        width: 200px;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    &__user-actions{
-        margin: 12px 0;
-    }
-    &__edit-btn, &__logout-btn{
-        padding: 8px 18px;
-        width: 100px;
-        border-radius: 10px;
-        background-color: blue;
-        color: #ffffff;
-        font-weight: 700;
-        margin: 0 4px;
-        cursor: pointer;
-        transition: all 0.3s;
-        &:hover{
-            background-color: darkblue;
-        }
-        &:active{
-            transform: scale(0.9);
-        }
-    }
-
+  .icon-left{
+    padding-right: 8px;
+}
 }

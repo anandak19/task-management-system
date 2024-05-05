@@ -53,14 +53,31 @@
       "email": "maha@gmail.com",
       "password": "Abcd123?",
       "userImage": "../../../assets/images/user/user.jpg"
+    },
+    {
+      "id": "81b9",
+      "firstName": "Naga",
+      "lastName": "Valli",
+      "userName": "nagavalli",
+      "email": "nagavalli@gmail.com",
+      "password": "Abcd123?",
+      "userImage": "../../../assets/images/user/user.jpg"
     }
   ],
   "userTasks": [
     {
-      "id": "dab5",
-      "taskTitle": "low",
-      "taskDescription": "d",
-      "dueDate": "2024-05-20",
+      "id": "42da",
+      "taskTitle": "ss",
+      "taskDescription": "dfd",
+      "dueDate": "2024-05-13",
+      "priority": "low",
+      "taskStatus": "pending"
+    },
+    {
+      "id": "53de",
+      "taskTitle": "abcd",
+      "taskDescription": "df",
+      "dueDate": "2024-05-21",
       "priority": "low",
       "taskStatus": "pending"
     }

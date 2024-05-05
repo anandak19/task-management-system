@@ -7,11 +7,13 @@ import { CommonModule } from '@angular/common';
 import { returnUserData } from '../../core/models/user-details';
 import { Chart, registerables } from 'chart.js';
 import Swal from 'sweetalert2';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faArrowUpRightFromSquare, faCircle, faCircleCheck, faPlus, faSortDown, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, FontAwesomeModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
@@ -21,6 +23,13 @@ export class DashboardComponent implements OnInit {
   public taskList: TaskDetails[] = [];
   public completedClass = 'dashboard__task-tiles-task-completed';
   public chartInstance: Chart | any;
+
+  faTrash = faTrash
+  faNotCheck = faCircle;
+  faChecked = faCircleCheck;
+  faSort = faSortDown;
+  faPlus= faPlus;
+  faOpen = faArrowUpRightFromSquare;
 
   // constructor ---------
   constructor(

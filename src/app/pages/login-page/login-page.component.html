@@ -1,11 +1,11 @@
 <div class="login-form-container">
     <div class="login-form-container__image-section">
-      <img src="../../../assets/images/signup-img.jpg" alt="" />
+      <img src="../../../assets/images/lap-guy.png" alt="" />
     </div>
   
     <div class="login-form-container__form-section">
       <form [formGroup]="form" (ngSubmit)="login()">
-        <h1 class="login-form-container__title">Login</h1>
+        <h1 class="login-form-container__title">Login<fa-icon class="icon-right" [icon]="faLock"></fa-icon></h1>
         <div class="login-form-container__form-group">
           <input
             type="text"
@@ -14,15 +14,17 @@
             placeholder=" "
           />
           <label for="" class="login-form-container__label">User Name</label>
+
         </div>
         <div class="login-form-container__form-group">
           <input
-            type="password"
+          [type]="hidePassword ? 'password' : 'text'"
             class="login-form-container__form-control"
             formControlName="password"
             placeholder=" "
           />
           <label for="" class="login-form-container__label">Password</label>
+          <fa-icon class="icon-eye" [icon]="hidePassword ? faEyeSlash : faEye" (click)="togglePasswordVisibility()"></fa-icon>
         </div>
         <button type="submit" class="login-form-container__login-btn">
           Login

@@ -15,8 +15,6 @@
     }
   }
 
-
-
   &__form-section {
     width: 50%;
     display: flex;
@@ -49,7 +47,7 @@
     text-align: left;
     color: #343434;
     pointer-events: none;
-    background-color: #fff;
+    background-color: #e2eceb;
     padding: 0 3px;
     width: max-content;
     transition: all ease-in 0.2s;
@@ -58,19 +56,21 @@
     font-size: 38px;
     font-weight: 600;
     margin-bottom: 24px;
+    color: #3d5653;;
   }
 
   &__form-control {
-    border: 2px solid #bbfff3;
+    border: 2px solid #8f5f00;
+    color: #3d5653;
+    background-color: transparent;
     outline: none;
     width: 200px;
     height: 28px;
     font-size: 14px;
     padding: 8px 18px;
-    // margin-bottom: 20px;
     border-radius: 15px;
     &:focus {
-      border: 2px solid #66fde1;
+      border: 2px solid #d6ad1d;
     }
   }
   .sign-up-form-container__form-control:focus ~ .sign-up-form-container__label,
@@ -79,7 +79,7 @@
       top: -0.7rem;
       left: 1rem;
       font-size: 13px;
-      color: #000000;
+      color: #153935;
   }
 
 
@@ -89,24 +89,25 @@
     padding: 8px 18px;
     margin: 22px 0;
     width: 30%;
-    color: #fff;
-    background-color: #16c5fc;
+    color: #d7af12;
+    background-color: #425c59;
 
     &:hover {
-        background-color: #0da5d9;
+      background-color: #d7af12;
+      color: #425c59;
       }
     
       &:active {
-        background-color: #0b8bbd;
+        background-color: #9e7e00;
       }
   }
   &__is-user {
     margin: 12px 0;
-    font-weight: 200;
+    font-weight: 300;
   }
   &__login-text {
-    color: #16c5fc;
-    font-weight: 300;
+    color: #425c59;
+    font-weight: 500;
     cursor: pointer;
     text-decoration: none;
     &:hover {

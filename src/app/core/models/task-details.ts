@@ -8,6 +8,18 @@ export interface TaskDetails {
     taskStatus: string;
     isCompleted: boolean;
 }
+export interface newTaskDetails {
+    id: string;
+    taskTitle: string;
+    taskDescription: string;
+    dueDate: string;
+    priority: string;
+    taskStatus: string;
+    userId: string;
+    isCompleted: boolean;
+}
+
+
 
 export interface completedTask{
     id: string;

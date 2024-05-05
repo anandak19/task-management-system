@@ -3,6 +3,13 @@
     <p class="user-profile__page-title">Profile</p>
   </div>
   <div class="user-profile__body">
+    <div class="user-profile__back">
+      <button class="user-profile__back-btn" (click)="goBackClicked()">
+        <fa-icon class="icon-left" [icon]="faBack"></fa-icon>
+        Go Back
+      </button>
+    </div>
+
     <div class="user-profile__user-image" (click)="fileInput.click()">
       <img #userImage [src]="profileImage" />
       <img src="../../../assets/images/user.jpg" alt="" />
@@ -25,6 +32,7 @@
             [ngModel]="currentUser?.userName"
             [readonly]="!isUpdating"
             class="user-profile__user-data-show"
+            [ngClass]="{ 'updating-details': isUpdating }"
             (ngModelChange)="onUsernameChange($event)"
           />
         </div>
@@ -38,6 +46,7 @@
           [ngModel]="currentUser?.firstName"
           [readonly]="!isUpdating"
           class="user-profile__user-data-show"
+          [ngClass]="{ 'updating-details': isUpdating }"
           (ngModelChange)="onFirstNameChange($event)"
         />
       </div>
@@ -48,6 +57,7 @@
           [ngModel]="currentUser?.lastName"
           [readonly]="!isUpdating"
           class="user-profile__user-data-show"
+          [ngClass]="{ 'updating-details': isUpdating }"
           (ngModelChange)="onLastNameChange($event)"
         />
       </div>
@@ -61,6 +71,7 @@
           [ngModel]="currentUser?.password"
           [readonly]="!isUpdating"
           class="user-profile__user-data-show"
+          [ngClass]="{ 'updating-details': isUpdating }"
           (ngModelChange)="onPasswordChange($event)"
         />
       </div>
@@ -72,6 +83,7 @@
           [ngModel]="currentUser?.email"
           [readonly]="!isUpdating"
           class="user-profile__user-data-show"
+          [ngClass]="{ 'updating-details': isUpdating }"
           (ngModelChange)="onEmailChange($event)"
         />
       </div>
@@ -79,8 +91,16 @@
     </div>
 
     <div class="user-profile__user-actions">
-      <button class="user-profile__edit-btn" (click)="updateButtonClicked()">Update</button>
-      <button class="user-profile__logout-btn" (click)="logoutButtonClicked()">Logout</button>
+      <button
+        class="user-profile__edit-btn"
+        (click)="updateButtonClicked()"
+        [ngClass]="{ 'btn-acive': isUpdating }"
+      >
+        {{ isUpdating ? "Save" : "Edit" }}
+      </button>
+      <button class="user-profile__logout-btn" (click)="logoutButtonClicked()">
+        Logout
+      </button>
     </div>
   </div>
 </div>

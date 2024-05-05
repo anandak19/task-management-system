@@ -5,11 +5,13 @@ import { CreateTaskPageComponent } from '../../../pages/create-task-page/create-
 import { CurrentUserService } from '../../../core/services/Users/current-user.service';
 import { returnUserData } from '../../../core/models/user-details';
 import { UserManagementService } from '../../../core/services/Users/user-management.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faCalendarCheck } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterOutlet, SignupPageComponent],
+  imports: [RouterOutlet, SignupPageComponent, FontAwesomeModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
@@ -17,6 +19,7 @@ export class HeaderComponent implements DoCheck, OnInit {
   public currentUserData?: returnUserData;
   public userImage?: string;
   isUserLogin = false;
+  faCheck = faCalendarCheck
   
 
   constructor(

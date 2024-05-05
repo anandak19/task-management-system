@@ -2,6 +2,7 @@
     display: flex;
     width: 100%;
     height: calc(100dvh - 70px);
+    
   
     &__image-section {
       width: 50%;
@@ -14,7 +15,6 @@
         width: 80%;
       }
     }
-  
     &__form-section {
       width: 50%;
       display: flex;
@@ -25,6 +25,15 @@
         width: 100%;
         text-align: center;
       }
+    }
+    &__title {
+      font-size: 38px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      color: #3d5653;
+    }
+    .icon-right{
+      padding-left: 8px;
     }
     &__form-group {
       position: relative;
@@ -37,27 +46,25 @@
       left: 12rem;
       color: #343434;
       pointer-events: none;
-      background-color: #fff;
+      background-color: #e2eceb;
       padding: 0 3px;
       transition: all ease-in 0.2s;
     }
-    &__title {
-      font-size: 38px;
-      font-weight: 600;
-      margin-bottom: 24px;
-    }
+
   
     &__form-control {
-      border: 2px solid #bbfff3;
+      border: 2px solid #8f5f00;
+      color: #3d5653;
+      background-color: transparent;
       outline: none;
       width: 50%;
       height: 28px;
-      font-size: 14px;
+      font-size: 16px;
       padding: 8px 18px;
       margin-bottom: 24px;
       border-radius: 15px;
       &:focus {
-        border: 2px solid #66fde1;
+        border: 2px solid #d6ad1d;
       }
     }
     .login-form-container__form-control:focus ~ .login-form-container__label,
@@ -66,38 +73,46 @@
       top: -0.7rem;
       left: 11.6rem;
       font-size: 13px;
-      color: #000000;
+      color: #153935;
+    }
+    .icon-eye{
+      position: absolute;
+      top: 0.9rem;
+      left: 34.1rem;
     }
   
   
     &__login-btn {
-      font-size: 18px;
-      border-radius: 30px;
-      padding: 8px 18px;
-      width: 30%;
-      color: #fff;
-      background-color: #16c5fc;
-  
+      font-size: 20px;
+      border-radius: 15px;
+      padding: 6px 18px;
+      width: 55%;
+      color: #d7af12;
+      background-color: #425c59;
+      transition: all ease-out 0.3s;
       &:hover {
-          background-color: #0da5d9;
+          background-color: #d7af12;
+          color: #425c59;
         }
       
         &:active {
-          background-color: #0b8bbd;
+          background-color: #9e7e00;
         }
     }
     &__is-user {
       margin: 12px 0;
-      font-weight: 200;
+      font-weight: 300;
     }
     &__signup-text {
-      color: #16c5fc;
-      font-weight: 300;
+      color: #425c59;
+      font-weight: 500;
       cursor: pointer;
       text-decoration: none;
       &:hover {
         text-decoration: underline;
       }
     }
+
+
   }
   

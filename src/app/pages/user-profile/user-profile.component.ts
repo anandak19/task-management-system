@@ -1,21 +1,23 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { UserManagementService } from '../../core/services/Users/user-management.service';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { CurrentUserService } from '../../core/services/Users/current-user.service';
 import { returnUserData } from '../../core/models/user-details';
 import { Router } from '@angular/router';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, FontAwesomeModule],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss',
 })
 export class UserProfileComponent {
 
-  public isUpdating = true;
+  public isUpdating? : boolean;
   public newUserName?: string;
   public newFirstName?: string;
   public newLastName?: string;
@@ -26,11 +28,20 @@ export class UserProfileComponent {
   public currentUser?: returnUserData;
   public userId?: string | any;
   public updatedUserData?: returnUserData | any;
+  faBack = faArrowLeft;
 
   constructor(
     private _userService: UserManagementService,
     private _currentUserService: CurrentUserService,
+    private location: Location
   ) {}
+
+  ngOnInit(): void {
+    this.currentUser = this._currentUserService.getCurrentUser();
+    this.isUpdating = false;
+    console.log(this.currentUser?.id);
+    this.userId = this.currentUser?.id;
+  }
 
   @ViewChild('userImage') userImage!: ElementRef;
   @ViewChild('fileInput') fileInput!: ElementRef;
@@ -50,6 +61,10 @@ export class UserProfileComponent {
 
   openFileInput() {
     this.fileInput.nativeElement.click();
+  }
+
+  goBackClicked() {
+    this.location.back();
   }
   // add feature to show user data on html
 
@@ -105,10 +120,6 @@ export class UserProfileComponent {
 
 
 
-  ngOnInit(): void {
-    this.currentUser = this._currentUserService.getCurrentUser();
-    console.log(this.currentUser?.id);
-    this.userId = this.currentUser?.id;
-  }
+
 
 }

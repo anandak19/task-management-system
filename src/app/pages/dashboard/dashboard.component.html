@@ -3,14 +3,11 @@
     <div class="dashboard__page-title">
       <p class="dashboard__page-title-text">Dashboard</p>
     </div>
-    <p class="dashboard__greetings">
-      Hi {{ currentUserData?.firstName }}
-    </p>
+    <p class="dashboard__greetings">Hi {{ currentUserData?.firstName }}</p>
   </div>
 
   <!-- body section  -->
   <div class="dashboard__body">
-
     <!-- task tiles start  -->
     <div class="dashboard__task-tiles-section">
       <div class="dashboard__task-tiles-container">
@@ -18,12 +15,14 @@
           <h1 class="dashboard__section-title">Your Tasks</h1>
           <!-- add link to go to task creation page  -->
           <button class="dashboard__task-create-btn" routerLink="create-task">
-            Create Task
+            <fa-icon [icon]="faPlus" class="icon-left"></fa-icon> Create Task 
           </button>
         </div>
         <div class="dashboard__task-tiles-filter-section">
           <div class="dashboard__task-tiles-dropdown">
-            <button class="dashboard__task-tiles-dropbtn">Filter Tasks</button>
+            <button class="dashboard__task-tiles-dropbtn">
+              Filter Tasks <fa-icon class="icon-right" [icon]="faSort"></fa-icon>
+            </button>
             <div class="dashboard__task-tiles-dropdown-content">
               <a (click)="selectItem('alltasks')">All Tasks</a>
               <a (click)="selectItem('pending')">Pending Tasks</a>
@@ -38,27 +37,40 @@
           @for(task of taskList; track task.id){
           <div
             class="dashboard__task-tiles-task"
-            [ngClass]="{ 'dashboard__task-tiles-task-completed': task.taskStatus === 'completed'}"
-            >
-            <div class="">
+            [ngClass]="{
+              'dashboard__task-tiles-task-completed':
+                task.taskStatus === 'completed'
+            }"
+          >
+            <div class="dashboard__task-tiles-left">
               <h3>{{ task.taskTitle }}</h3>
               <p>Due: {{ task.dueDate }}</p>
               <!-- add link to go to details page  -->
-              <button class="dashboard__task-tile-details" [routerLink]="'task/' + task.id">View Details</button>
+              <button
+                class="dashboard__task-tile-details"
+                [routerLink]="'task/' + task.id"
+              >
+                View Task <fa-icon class="icon-right" [icon]="faOpen"></fa-icon>
+              </button>
             </div>
             <div class="dashboard__task-tiles-controls">
               <button
                 class="dashboard__task-tiles-completed"
                 (click)="completedTaskClicked(task.id)"
               >
-              {{ task.taskStatus === 'completed' ? 'Completed' : 'Complete' }}
+                @if (task.taskStatus === "completed") {
+                <fa-icon [icon]="faChecked"></fa-icon>
+                }@else {
+                <fa-icon [icon]="faNotCheck"></fa-icon>
+                }
+
+                {{ task.taskStatus === "completed" ? "Completed" : "Complete" }}
               </button>
-              <button
-                class="dashboard__task-tiles-delete"
+              <fa-icon
                 (click)="deleteTaskClicked(task.id)"
-              >
-                Delete
-              </button>
+                [icon]="faTrash"
+                class="dashboard__delete-icon"
+              />
             </div>
           </div>
           }@empty {
@@ -73,10 +85,14 @@
     <div class="dashboard__pie-chart-section">
       <div class="dashboard__pie-chart-container">
         <h1 class="dashboard__section-title">Priority Analysis</h1>
-        <canvas id="piechart" class="dashboard__piechart" height="400" width="300"></canvas>
+        <canvas
+          id="piechart"
+          class="dashboard__piechart"
+          height="400"
+          width="300"
+        ></canvas>
       </div>
     </div>
     <!-- pie chart end  -->
-
   </div>
 </div>
