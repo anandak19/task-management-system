@@ -53,15 +53,17 @@ export class DashboardComponent implements OnInit {
         this.taskList = response;
       },
       (error) => {
-        console.error('Error:', error);
-        // toast error message
-        // Handle any errors that occur during the HTTP request
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          confirmButtonColor: "#3d5653",
+        });
       }
     );
   }
   // functions to disply and render task by priority on pie chart
   displayChart() {
-    console.log(this.taskList);
     let highPriorityTasks = this.taskList.filter(
       (task) => task.priority === 'high'
     ).length;
@@ -99,7 +101,6 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-
   // function to filter by task status
   selectItem(filterItem: string): void {
     if (filterItem === 'alltasks') {
@@ -116,6 +117,7 @@ export class DashboardComponent implements OnInit {
             icon: "error",
             title: "Oops...",
             text: "Something went wrong!",
+            confirmButtonColor: "#3d5653",
           });
         }
       );
@@ -129,7 +131,7 @@ export class DashboardComponent implements OnInit {
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "#3d5653",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
@@ -139,8 +141,10 @@ export class DashboardComponent implements OnInit {
             // Success case
             Swal.fire({
               title: "Deleted!",
-              text: "Your file has been deleted.",
-              icon: "success"
+              text: "Your task has been deleted.",
+              icon: "success",
+              timer: 2000,
+              showConfirmButton: false
             });
             this.renderDashboardData();
           },
@@ -150,6 +154,7 @@ export class DashboardComponent implements OnInit {
               icon: "error",
               title: "Oops...",
               text: "Something went wrong!",
+              confirmButtonColor: "#3d5653",
             });
           }
         );
@@ -184,6 +189,7 @@ export class DashboardComponent implements OnInit {
           icon: "error",
           title: "Oops...",
           text: "Something went wrong!",
+          confirmButtonColor: "#3d5653",
         });
       }
     );
@@ -194,7 +200,7 @@ export class DashboardComponent implements OnInit {
     this.displayTasks();
     setTimeout(() => {
       this.displayChart();
-    }, 1000);
+    }, 800);
   }
 
 // ---------functions end-------

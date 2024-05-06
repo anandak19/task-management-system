@@ -107,7 +107,7 @@ export class SignupPageComponent {
         userName: this.form.value.userName,
         email: this.form.value.email,
         password: this.form.value.password,
-        userImage: '../../../assets/images/user/user.jpg'
+        userImage: '../../../assets/images/user/avatar.jpg'
       };
 
       this.userService.AddtUserDetails(this.newUserDetails).subscribe(

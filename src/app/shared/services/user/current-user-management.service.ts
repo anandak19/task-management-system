@@ -11,7 +11,7 @@ export class CurrentUserManagementService {
 
   constructor(private _router: Router, public _userService: UsersManagementService) { }
 
-  public currentUser?: returnUserData | null;
+  public currentUser?: returnUserData | any;
 
   // to store the current user deatails 
   setCurrentUser(user: any): void {

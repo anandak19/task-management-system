@@ -16,6 +16,7 @@ export interface completedTask{
     taskStatus: string;
 }
 
+
 export interface updateTaskDetails {
     taskTitle: string | undefined;
     taskDescription: string | undefined;

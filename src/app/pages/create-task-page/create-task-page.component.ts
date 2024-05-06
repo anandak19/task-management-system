@@ -13,6 +13,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { CurrentUserManagementService } from '../../shared/services/user/current-user-management.service';
 import { TaskManagementService } from '../../shared/services/tasks/task-management.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-task-page',
@@ -28,6 +29,12 @@ import { TaskManagementService } from '../../shared/services/tasks/task-manageme
   styleUrl: './create-task-page.component.scss',
 })
 export class CreateTaskPageComponent {
+  // declarations
+  newTask!: FormGroup;
+  isTaskSubmited = false;
+  public myClass = 'create-task__is-invalid';
+  faBack = faArrowLeft;
+
   constructor(
     private _fb: FormBuilder,
     private _taskService: TaskManagementService,
@@ -36,17 +43,11 @@ export class CreateTaskPageComponent {
     private currentUser: CurrentUserManagementService
   ) {}
 
-  newTask!: FormGroup;
-  isTaskSubmited = false;
-  public myClass = 'create-task__is-invalid';
-  public userId? : string
-  faBack = faArrowLeft;
-
   ngOnInit(): void {
-    const initialValue = new Date();
-    this.userId = this.getUserId()
-    
-    
+    // initialValue for date
+    let initialValue = new Date();
+
+    // form
     this.newTask = this._fb.group({
       taskTitle: ['', [Validators.required, Validators.maxLength(60)]],
       taskDescription: ['', [Validators.required]],
@@ -59,15 +60,12 @@ export class CreateTaskPageComponent {
     });
   }
 
-  getUserId(){
-    const user = this.currentUser.getCurrentUser()
-    return user.id
-  }
-
+  // navigate back
   goBackClicked() {
     this.location.back();
   }
 
+  // check if the date input is changed or not
   dateChangedValidator(initialValue: Date) {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const currentDate = control.value;
@@ -76,29 +74,29 @@ export class CreateTaskPageComponent {
     };
   }
 
+  // to add new task
   addTask() {
     this.isTaskSubmited = true;
     if (this.newTask.valid) {
-      
       this._taskService.addnewTask(this.newTask.value).subscribe(
         (response) => {
-          // this._route.navigateByUrl('');
-          // correct path
+          Swal.fire({
+            icon: 'success',
+            title: 'Task added successfully!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
           this._route.navigateByUrl('dashboard');
-          // add a sucessfull add task toaster message here ------------
-          console.log(response);
         },
         (error) => {
-          console.log(error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'Failed to add task. Please try again later.',
+            confirmButtonColor: '#3d5653',
+          });
         }
       );
-
-      // Proceed with adding the task
-    } else {
-      console.log('not valid');
-
-      // Handle invalid form submission
-      // Maybe display error messages or take other actions
     }
   }
 }

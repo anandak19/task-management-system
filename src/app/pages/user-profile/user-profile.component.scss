@@ -17,18 +17,19 @@
     border-radius: 30px;
   }
   &__body {
-    background-color: #d2c08f;
+    background-color: #c89b34;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     margin: 12px 0;
     padding: 22px;
     box-sizing: border-box;
     width: 50%;
+    border-radius: 15px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    gap: 14px;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    gap: 14px;
   }
   &__back {
     display: flex;
@@ -116,23 +117,24 @@
     padding: 4px;
     outline: none;
     width: 200px;
-}
-.updating-details{
-      border-bottom: 1px solid black;
+  }
+  .updating-details {
+    border-bottom: 1px solid black;
   }
 
   &__user-actions {
     margin: 12px 0;
   }
+
   &__edit-btn,
   &__logout-btn {
     padding: 8px 18px;
-    width: 100px;
+    width: 161px;
     border-radius: 10px;
     background-color: #3d5653;
     color: #ffffff;
     font-weight: 700;
-    margin: 0 4px;
+    margin: 0 6px;
     cursor: pointer;
     transition: all 0.3s ease;
     &:hover {
@@ -143,12 +145,15 @@
       transform: scale(0.9);
     }
   }
-  .btn-acive{
+  .btn-acive {
     background-color: #293e3c;
     transform: scale(1.1);
   }
 
-  .icon-left{
+  .icon-left {
     padding-right: 8px;
-}
+  }
+  .custom-confirm-button {
+    background-color: #3d5653 !important;
+  }
 }

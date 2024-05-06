@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { newUserData, userLogin, UserDetails, returnUserData } from '../../../core/models/user-details';
+import { newUserData, userLogin, UserDetails, returnUserData, passwordChange, updateUser } from '../../../core/models/user-details';
 
 @Injectable({
   providedIn: 'root'
@@ -46,7 +46,11 @@ export class UsersManagementService {
   }
 
   // to update user data
-  updateUser(userData: returnUserData | any, userId: string): Observable<any> {
+  updateUser(userData: updateUser, userId: string): Observable<any> {
     return this._http.patch(`${this.userUrl}/${userId}`, userData);
+  }
+
+  updateUserPassword(password: passwordChange, userId: string): Observable<any>{
+    return this._http.patch(`${this.userUrl}/${userId}`, password);
   }
 }

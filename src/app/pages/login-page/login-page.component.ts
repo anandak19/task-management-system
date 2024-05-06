@@ -63,8 +63,6 @@ export class LoginPageComponent {
       this.userService.findUser(userData).subscribe(
         (res) => {
           if (res.isAuthenticated) {
-            console.log(res.user);
-            
             this.currentUser.setCurrentUser(res.user);
             const Toast = Swal.mixin({
               toast: true,
@@ -76,10 +74,10 @@ export class LoginPageComponent {
                 toast.onmouseleave = Swal.resumeTimer;
               },
             });
-            Toast.fire({
-              icon: 'success',
-              title: 'Login successful!',
-            });
+            // Toast.fire({
+            //   icon: 'success',
+            //   title: 'Login successful!',
+            // });
             this._route.navigateByUrl('/dashboard');
           } else {
             Swal.fire({

@@ -16,7 +16,6 @@ export interface newUserData {
   userImage: string;
 }
 
-
 export interface returnUserData {
   id: string;
   firstName: string;
@@ -24,6 +23,15 @@ export interface returnUserData {
   userName: string;
   email: string;
   password: string;
+  userImage: string;
+}
+
+export interface updateUser {
+  id: string;
+  firstName: string;
+  lastName: string;
+  userName: string;
+  email: string;
   userImage: string;
 }
 
@@ -39,5 +47,9 @@ export interface FullUserDetails {
 
 export interface userLogin {
   userName: string;
+  password: string;
+}
+
+export interface passwordChange {
   password: string;
 }
