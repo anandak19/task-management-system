@@ -91,16 +91,17 @@
     width: 30%;
     color: #d7af12;
     background-color: #425c59;
-
+    transition: all ease-out 0.3s;
     &:hover {
       background-color: #d7af12;
       color: #425c59;
       }
-    
       &:active {
         background-color: #9e7e00;
       }
   }
+
+  // login request text 
   &__is-user {
     margin: 12px 0;
     font-weight: 300;
@@ -115,6 +116,7 @@
     }
   }
 
+  // warning contents 
   &__invalid-feedback{
     color: red;
     font-size: 12px;

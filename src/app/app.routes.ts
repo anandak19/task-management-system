@@ -2,28 +2,22 @@ import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: 'login',
-  //   pathMatch: 'full',
-  // },
   {
-    path: '',
+    path: '', title: "Task Manager - Login",
     loadComponent: () =>
       import('./pages/login-page/login-page.component').then(
         (c) => c.LoginPageComponent
       ),
   },
   {
-    path: 'signup',
+    path: 'signup', title: "Signup",
     loadComponent: () =>
       import('./pages/signup-page/signup-page.component').then(
         (c) => c.SignupPageComponent
       ),
   },
   {
-    path: 'profile',
-    // path: '',
+    path: 'profile', title: "Profile",
     canActivateChild: [authGuard],
     children: [
       {
@@ -37,21 +31,18 @@ export const routes: Routes = [
   },
 
   {
-    path: 'dashboard',
-    // path: '',
+    path: 'dashboard', title: "Dashboard",
     canActivateChild: [authGuard],
     children: [
       {
         path: '',
-        // path: "sdf",
         loadComponent: () =>
           import('./pages/dashboard/dashboard.component').then(
             (c) => c.DashboardComponent
           ),
       },
       {
-        path: 'create-task',
-        // path: '',
+        path: 'create-task', title: "Create Task",
         loadComponent: () =>
           import('./pages/create-task-page/create-task-page.component').then(
             (c) => c.CreateTaskPageComponent
@@ -59,7 +50,7 @@ export const routes: Routes = [
       },
 
       {
-        path: 'task/:id',
+        path: 'task/:id', title: "Task Details",
         loadComponent: () =>
           import('./pages/task-details-page/task-details-page.component').then(
             (c) => c.TaskDetailsPageComponent

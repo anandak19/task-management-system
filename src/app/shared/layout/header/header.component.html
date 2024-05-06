@@ -1,19 +1,19 @@
 <div class="header">
-    <h1 class="header__brand-name"><fa-icon [icon]="faCheck" class="header__logo"></fa-icon>Task Manager</h1>
-    <div class="header__profile-section" (click)="viewProfileClicked()">
-        @if (isUserLogin) {
-            <p>Profile</p>
-        }
-        <div class="header__img-circle">
-            @if (isUserLogin) {
-                <img [src]="userImage" alt="user">
-            }@else {
-                <img [src]= "userImage" alt="">
-            }
-        </div>
+  <h1 class="header__brand-name">
+    <fa-icon [icon]="faCheck" class="header__logo"></fa-icon>Task Manager
+  </h1>
+  <div class="header__profile-section" (click)="viewProfileClicked()">
+    @if (isUserLogin) {
+    <p>Profile</p>
+    }
+    <div class="header__img-circle">
+      @if (isUserLogin) {
+      <img [src]="userImage" alt="user" />
+      }@else {
+      <img [src]="initialUserImage" alt="user" />
+      }
     </div>
+  </div>
 </div>
 
 <router-outlet />
-
-

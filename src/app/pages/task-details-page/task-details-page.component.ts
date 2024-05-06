@@ -63,10 +63,23 @@ export class TaskDetailsPageComponent {
     );
   }
 
+  // navigate back 
   goBackClicked() {
-    this.location.back();
+    if (this.isUpdating) {
+      Swal.fire({
+        title: 'Unsaved Changes',
+        text: 'Changes are not saved',
+        icon: 'warning',
+        showConfirmButton: false,
+        timer: 1800,
+      });
+      this.location.back();
+    } else {
+      this.location.back();
+    }
   }
 
+  // input change ditections start 
   onTaskTitleChange(title: string): void {
     this.newTitle = title;
   }
@@ -82,8 +95,9 @@ export class TaskDetailsPageComponent {
   onStatusChange(status: string): void {
     this.newStatus = status;
   }
+  // input change ditections end 
 
-  // function when the update buton is clicked
+  // when the update buton is clicked
   updateButtonClicked() {
     if (this.isUpdating) {
       this.isUpdating = !this.isUpdating;
@@ -101,7 +115,7 @@ export class TaskDetailsPageComponent {
         .subscribe(
           (response) => {
             Swal.fire({
-              position: 'top-end',
+              position: 'center',
               icon: 'success',
               title: 'Your task has been updated',
               showConfirmButton: false,
@@ -113,6 +127,7 @@ export class TaskDetailsPageComponent {
               icon: 'error',
               title: 'Oops...',
               text: 'Something went wrong!',
+              confirmButtonColor: "#3d5653",
             });
           }
         );
@@ -140,6 +155,8 @@ export class TaskDetailsPageComponent {
               title: 'Deleted!',
               text: 'Your task has been deleted.',
               icon: 'success',
+              timer: 2000,
+              showConfirmButton: false
             });
             this.goBackClicked();
           },
@@ -149,6 +166,7 @@ export class TaskDetailsPageComponent {
               icon: 'error',
               title: 'Oops...',
               text: 'Something went wrong!',
+              confirmButtonColor: "#3d5653",
             });
           }
         );

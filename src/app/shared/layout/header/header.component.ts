@@ -16,6 +16,7 @@ import { UsersManagementService } from '../../services/user/users-management.ser
 })
 export class HeaderComponent implements DoCheck, OnInit {
   public currentUserData?: returnUserData;
+  public initialUserImage?: string;
   public userImage?: string;
   isUserLogin = false;
   faCheck = faCalendarCheck
@@ -34,7 +35,7 @@ export class HeaderComponent implements DoCheck, OnInit {
   }
 
   ngOnInit(): void {
-    this.userImage = '../../../../assets/images/user/initial-user.png'
+    this.initialUserImage = '../../../../assets/images/user/initial-user.png'
   }
   // check if the user is loged in
   // then chege the profile icon 

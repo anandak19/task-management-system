@@ -207,7 +207,7 @@ export class UserProfileComponent {
     } else {
       Swal.fire({
         title: 'Wrong Password',
-        text: 'Entered password is wrong. Please try again',
+        text: 'Try agin with correct password',
         icon: 'error',
         confirmButtonColor: '#3d5653',
       });

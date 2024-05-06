@@ -17,13 +17,11 @@ export class CurrentUserManagementService {
   setCurrentUser(user: any): void {
     this.currentUser = { ...user };    
   }
-  // localStorage.setItem('currentUser', JSON.stringify(user));
 
   // to get the current user deatails 
   getCurrentUser(): returnUserData | any {
     return this.currentUser;
   }
-  // return JSON.parse(localStorage.getItem('currentUser') || '{}');
 
   // to clear the local stored data of current user 
   logout(): void {

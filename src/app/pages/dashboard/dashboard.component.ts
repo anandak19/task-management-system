@@ -13,7 +13,7 @@ import { TaskManagementService } from '../../shared/services/tasks/task-manageme
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [RouterLink, CommonModule, FontAwesomeModule],
+  imports: [RouterLink, CommonModule, FontAwesomeModule ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })

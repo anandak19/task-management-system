@@ -12,5 +12,4 @@ export const authGuard: CanActivateChildFn = (route, state) => {
     router.navigate(['']);
     return false;
   }
-  
 };

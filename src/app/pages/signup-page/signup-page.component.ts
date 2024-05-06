@@ -21,16 +21,20 @@ import { UsersManagementService } from '../../shared/services/user/users-managem
   styleUrl: './signup-page.component.scss',
 })
 export class SignupPageComponent {
+
+  // declarations 
+  form!: FormGroup;
+  newUserDetails!: newUserData;
+  isSubmitted: boolean = false;
+  tooShort?: boolean;
+
   constructor(
     private _fb: FormBuilder,
     private userService: UsersManagementService,
     private route: Router
   ) {}
 
-  form!: FormGroup;
-  newUserDetails!: newUserData;
-  isSubmitted: boolean = false;
-  tooShort?: boolean;
+
 
   ngOnInit(): void {
     this.form = this._fb.group({
@@ -68,6 +72,7 @@ export class SignupPageComponent {
     return null;
   }
 
+  // validating password 
   passwordValidator(
     control: AbstractControl
   ): { [key: string]: boolean } | null {
@@ -86,6 +91,7 @@ export class SignupPageComponent {
     return null;
   }
 
+  // to confirm password 
   confirmPasswordValidator(
     control: AbstractControl
   ): { [key: string]: boolean } | null {
@@ -107,16 +113,14 @@ export class SignupPageComponent {
         userName: this.form.value.userName,
         email: this.form.value.email,
         password: this.form.value.password,
-        userImage: '../../../assets/images/user/avatar.jpg'
+        userImage: "../../../assets/images/user/initial-user.png"
       };
 
       this.userService.AddtUserDetails(this.newUserDetails).subscribe(
         (response) => {
-
-          // add a sucessfull signup toaster message here ------------
           const Toast = Swal.mixin({
             toast: true,
-            position: "top-end",
+            position: "center",
             showConfirmButton: false,
             timer: 2000,
             timerProgressBar: true,
@@ -129,15 +133,24 @@ export class SignupPageComponent {
             icon: "success",
             title: "Signed in successfully"
           });
-          this.route.navigateByUrl('login')
-          console.log(response);
+          this.route.navigateByUrl('')
         },
         (error) => {
-          console.log(error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Internal Server Error',
+            text: 'Oops! Something went wrong',
+            confirmButtonColor: '#153935',
+          });
         }
       );
     } else {
-      console.log('An error occured');
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid',
+        text: 'Fill the form with valid details',
+        confirmButtonColor: '#153935',
+      });
     }
   }
 }

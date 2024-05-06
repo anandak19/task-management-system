@@ -14,6 +14,4 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 })
 export class AppComponent {
   title = 'task-management-system';
-  
-  // remove unused componant imports
 }

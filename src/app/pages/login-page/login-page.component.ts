@@ -74,10 +74,13 @@ export class LoginPageComponent {
                 toast.onmouseleave = Swal.resumeTimer;
               },
             });
-            // Toast.fire({
-            //   icon: 'success',
-            //   title: 'Login successful!',
-            // });
+            Swal.fire({
+              icon: 'success',
+              title: 'Login successful!',
+              position: 'center',
+              showConfirmButton: false,
+              timer: 3000,
+            });
             this._route.navigateByUrl('/dashboard');
           } else {
             Swal.fire({
