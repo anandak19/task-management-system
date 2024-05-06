@@ -89,8 +89,8 @@ export class DashboardComponent implements OnInit {
         datasets: [{
           label: 'Task count',
           data: [high, medium, low],
-          backgroundColor: ['rgb(255, 44, 44)', 'rgb(255, 113, 31)', 'rgb(255, 188, 19)'],
-          borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
+          backgroundColor: ['#9e6f02', '#ca9c30', '#d2c08f'],
+          borderColor: ['#9e6f02', '#ca9c30', '#d2c08f'],
           borderWidth: 1,
         }],
       },
